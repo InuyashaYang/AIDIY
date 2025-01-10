@@ -31,56 +31,53 @@ extra_javascript:
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css
 nav:
-  - Home: index.md
-  - Mathematical Foundation: 
-    - 矩阵满秩分解: Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition.md
-    - 矩阵求导: Mathematical_Foundation/Linear_Algebra/Matrix_Calculation.md
-    - 流形假设: Mathematical_Foundation/Manifold/Manifold_hypothesis.md
-  - Classic Machine Learning:
-    - CNN: ML_Pages/CNN.md
-    - MLP: ML_Pages/MLP.md
-    - RNN: ML_Pages/RNN.md
-    - VAE: ML_Pages/VAE.md
-    - Exercise_CNN: ML_Pages/Pytorch_CNN.md
-    - Exercise_MLP: ML_Pages/Pytorch_MLP.md
-    - Exercise_RNN: ML_Pages/Pytorch_RNN.md
-    - Exercise_VAE: ML_Pages/Pytorch_VAE.md
-  - LLM Structure:
-    - Transformer经典架构: LLM_Pages/LLM_Architecture.md
-    - 位置编码: LLM_Pages/Position_Embedding.md
-    - 预训练阶段: LLM_Pages/Pre-Train.md
-    - 后训练阶段: LLM_Pages/Post-Train.md
-    - MoE数学架构: LLM_Pages/MoE_Architecture.md
-    - Llama3架构: LLM_Pages/Llama3.md
-  - SFT: 
-      - SFT: SFT_Pages/SFT.md
-      - Lora: SFT_Pages/Lora.md
-  - Frame Work: 
-    - LlamaFactory入门: Engineering_Pages/LlamaFactory.md
-    - 全量微调: Engineering_Pages/Full_SFT_LlamaFactory.md
-    - Pytorch Tensor: Engineering_Pages/Pytorch/Basic_1_Tensor.md
-    - Pytorch Autograd: Engineering_Pages/Pytorch/Basic_2_Autograd.md
-    - Pytorch load Data: Engineering_Pages/Pytorch/How_to_Load_Data.md
-    - Pytorch train Model: Engineering_Pages/Pytorch/How_to_Train_Model.md
-  - RLHF: 
-    - DPO: RLHF_Pages/DPO.md
-    - DPO_Exercice: RLHF_Pages/DPO_Exercise.md
-    - DPO_Problem: RLHF_Pages/DPO_Problem.md
-    - DPO_Math: RLHF_Pages/DPO_Math.md
-    - PPO: RLHF_Pages/PPO.md
-    - PPO_Loss: RLHF_Pages/PPO_Loss.md
-    - RM_Full_FT_or_Lora: RLHF_Pages/RM_Full_FT_or_Lora.md
-    - RM_Training: RLHF_Pages/RM_Training.md
-    - GRPO: RLHF_Pages/GRPO.md
-    - MCTS_DPO: RLHF_Pages/MCTS_DPO.md
-    - KTO: RLHF_Pages/KTO.md
-    - SimPO: RLHF_Pages/SimPO.md
-    - SimPO_Exercice: RLHF_Pages/SimPO_Exercise.md
-    - RM_Exercise: RLHF_Pages/RM_Exercise.md
-    - NPO: RLHF_Pages/NPO.md
-
-
-
+  - 首页 Home: index.md
+  - 数学基础 Mathematical Foundation: 
+    - 矩阵满秩分解 Full Rank Decomposition: Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition.md
+    - 矩阵求导 Matrix Calculation: Mathematical_Foundation/Linear_Algebra/Matrix_Calculation.md
+    - 流形假设 Manifold Hypothesis: Mathematical_Foundation/Manifold/Manifold_hypothesis.md
+  - 经典机器学习 Classic ML:
+    - 卷积神经网络 CNN: ML_Pages/CNN.md
+    - 多层感知机 MLP: ML_Pages/MLP.md
+    - 循环神经网络 RNN: ML_Pages/RNN.md
+    - 变分自编码器 VAE: ML_Pages/VAE.md
+    - CNN编程练习 CNN Practice: ML_Pages/Pytorch_CNN.md
+    - MLP编程练习 MLP Practice: ML_Pages/Pytorch_MLP.md
+    - RNN编程练习 RNN Practice: ML_Pages/Pytorch_RNN.md
+    - VAE编程练习 VAE Practice: ML_Pages/Pytorch_VAE.md
+  - 大语言模型结构 LLM Structure:
+    - Transformer经典架构 Architecture: LLM_Pages/LLM_Architecture.md
+    - 位置编码 Position Embedding: LLM_Pages/Position_Embedding.md
+    - 预训练阶段 Pre-Train: LLM_Pages/Pre-Train.md
+    - 后训练阶段 Post-Train: LLM_Pages/Post-Train.md
+    - MoE数学架构 Mathematics: LLM_Pages/MoE_Architecture.md
+    - Llama3架构 Architecture: LLM_Pages/Llama3.md
+  - 指令微调 SFT: 
+      - 监督微调 SFT: SFT_Pages/SFT.md
+      - 低秩适应 Lora: SFT_Pages/Lora.md
+  - 框架实践 Framework: 
+    - LlamaFactory入门 Introduction: Engineering_Pages/LlamaFactory.md
+    - 全量微调 Full SFT: Engineering_Pages/Full_SFT_LlamaFactory.md
+    - Pytorch张量 Tensor: Engineering_Pages/Pytorch/Basic_1_Tensor.md
+    - Pytorch自动微分 Autograd: Engineering_Pages/Pytorch/Basic_2_Autograd.md
+    - Pytorch数据加载 Data Loading: Engineering_Pages/Pytorch/How_to_Load_Data.md
+    - Pytorch模型训练 Model Training: Engineering_Pages/Pytorch/How_to_Train_Model.md
+  - 人类反馈强化学习 RLHF: 
+    - 直接偏好优化 DPO: RLHF_Pages/DPO.md
+    - DPO编程练习 DPO Practice: RLHF_Pages/DPO_Exercise.md
+    - DPO问题分析 Problems: RLHF_Pages/DPO_Problem.md
+    - DPO数学原理 Mathematics: RLHF_Pages/DPO_Math.md
+    - 近端策略优化 PPO: RLHF_Pages/PPO.md
+    - PPO损失函数 Loss: RLHF_Pages/PPO_Loss.md
+    - 奖励模型训练方式 RM Training: RLHF_Pages/RM_Full_FT_or_Lora.md
+    - 奖励模型训练 RM Training: RLHF_Pages/RM_Training.md
+    - 群组相对策略优化 GRPO: RLHF_Pages/GRPO.md
+    - 蒙特卡洛树DPO MCTS-DPO: RLHF_Pages/MCTS_DPO.md
+    - KL约束优化 KTO: RLHF_Pages/KTO.md
+    - 简单偏好优化 SimPO: RLHF_Pages/SimPO.md
+    - SimPO编程练习 SimPO Practice: RLHF_Pages/SimPO_Exercise.md
+    - 奖励模型练习 RM Practice: RLHF_Pages/RM_Exercise.md
+    - 负偏好优化 NPO: RLHF_Pages/NPO.md
 
 extra:
   social:
