@@ -2756,13 +2756,13 @@ Activations:
 </code></pre></div>
 <h3 id="_1"><strong>一、优化问题形式化</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p><strong>目标函数</strong>：
-$$
-\max_{\pi} \underbrace{\mathbb{E}<em _pi__text_ref="\pi_{\text{ref">{z \sim \pi}\left[ A</em>}}}(s_t, z) \right]<em _text_KL="\text{KL">{\text{优势期望}} - \beta \underbrace{D</em>
-$$
-}}\left( \pi | \pi_{\text{ref}} \right)}_{\text{KL惩罚项}<strong>约束条件</strong>：
-$$
-\sum_z \pi(z|s_t) = 1 \quad \text{且} \quad \pi(z|s_t) \geq 0
 $$</p>
+<p>\max_{\pi} \underbrace{\mathbb{E}<em _pi__text_ref="\pi_{\text{ref">{z \sim \pi}\left[ A</em>}}}(s_t, z) \right]<em _text_KL="\text{KL">{\text{优势期望}} - \beta \underbrace{D</em>}}\left( \pi | \pi_{\text{ref}} \right)}_{\text{KL惩罚项}</p>
+<div class="arithmatex">\[
+**约束条件**：
+\]</div>
+<p>\sum_z \pi(z|s_t) = 1 \quad \text{且} \quad \pi(z|s_t) \geq 0</p>
+<p>$$</p>
 <hr />
 <h3 id="_2"><strong>二、拉格朗日函数构造</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>引入乘子<span class="arithmatex">\(\lambda\)</span>处理概率归一化约束：
