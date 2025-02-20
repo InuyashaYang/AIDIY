@@ -9,22 +9,22 @@
       
       
       
-        <link rel="prev" href="../LLM_Architecture/">
+        <link rel="prev" href="../LayerNorm/">
       
       
-        <link rel="next" href="../Pre-Train/">
+        <link rel="next" href="../RMSNorm/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
-        <title>位置编码 - AIDIY Wiki</title>
+        <title>批归一化 BatchNorm - AIDIY Wiki</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
       
 
@@ -45,7 +45,7 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#batch-normalization" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +78,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="AIDIY Wiki" class="md-header__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+    <a href="../../.." title="AIDIY Wiki" class="md-header__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              位置编码
+              批归一化 BatchNorm
             
           </span>
         </div>
@@ -167,12 +167,12 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
   
-  Home
+  首页 Home
 
       </a>
     </li>
@@ -186,10 +186,10 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-tabs__link">
+        <a href="../../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-tabs__link">
           
   
-  Mathematical Foundation
+  数学基础 Mathematical Foundation
 
         </a>
       </li>
@@ -204,10 +204,10 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ML_Pages/CNN/" class="md-tabs__link">
+        <a href="../../../ML_Pages/CNN/" class="md-tabs__link">
           
   
-  Classic Machine Learning
+  经典机器学习 Classic ML
 
         </a>
       </li>
@@ -216,6 +216,14 @@
 
       
         
+  
+  
+    
+  
+  
+    
+    
+      
   
   
     
@@ -224,10 +232,31 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../LLM_Architecture/" class="md-tabs__link">
+        <a href="../../LLM_Architecture/LLM_Architecture/" class="md-tabs__link">
           
   
-  LLM Structure
+  大语言模型结构 LLM Structure
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SFT_Pages/SFT/" class="md-tabs__link">
+          
+  
+  指令微调 SFT
 
         </a>
       </li>
@@ -242,10 +271,10 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../SFT_Pages/SFT/" class="md-tabs__link">
+        <a href="../../../Engineering_Pages/LlamaFactory/" class="md-tabs__link">
           
   
-  SFT
+  框架实践 Framework
 
         </a>
       </li>
@@ -260,28 +289,10 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../Engineering_Pages/LlamaFactory/" class="md-tabs__link">
+        <a href="../../../RLHF_Pages/DPO/" class="md-tabs__link">
           
   
-  Frame Work
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../RLHF_Pages/DPO/" class="md-tabs__link">
-          
-  
-  RLHF
+  人类反馈强化学习 RLHF
 
         </a>
       </li>
@@ -311,7 +322,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AIDIY Wiki" class="md-nav__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+    <a href="../../.." title="AIDIY Wiki" class="md-nav__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -329,11 +340,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Home
+    首页 Home
   </span>
   
 
@@ -368,7 +379,7 @@
             
   
   <span class="md-ellipsis">
-    Mathematical Foundation
+    数学基础 Mathematical Foundation
   </span>
   
 
@@ -378,7 +389,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Mathematical Foundation
+            数学基础 Mathematical Foundation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -389,11 +400,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-nav__link">
+      <a href="../../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    矩阵满秩分解
+    矩阵满秩分解 Full Rank Decomposition
   </span>
   
 
@@ -410,11 +421,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Calculation/" class="md-nav__link">
+      <a href="../../../Mathematical_Foundation/Linear_Algebra/Matrix_Calculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    矩阵求导
+    矩阵求导 Matrix Calculation
   </span>
   
 
@@ -431,11 +442,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Mathematical_Foundation/Manifold/Manifold_hypothesis/" class="md-nav__link">
+      <a href="../../../Mathematical_Foundation/Manifold/Manifold_hypothesis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    流形假设
+    流形假设 Manifold Hypothesis
   </span>
   
 
@@ -478,7 +489,7 @@
             
   
   <span class="md-ellipsis">
-    Classic Machine Learning
+    经典机器学习 Classic ML
   </span>
   
 
@@ -488,7 +499,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Classic Machine Learning
+            经典机器学习 Classic ML
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -499,11 +510,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/CNN/" class="md-nav__link">
+      <a href="../../../ML_Pages/CNN/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    CNN
+    卷积神经网络 CNN
   </span>
   
 
@@ -520,11 +531,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/MLP/" class="md-nav__link">
+      <a href="../../../ML_Pages/MLP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    MLP
+    多层感知机 MLP
   </span>
   
 
@@ -541,11 +552,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/RNN/" class="md-nav__link">
+      <a href="../../../ML_Pages/RNN/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    RNN
+    循环神经网络 RNN
   </span>
   
 
@@ -562,11 +573,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/VAE/" class="md-nav__link">
+      <a href="../../../ML_Pages/VAE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    VAE
+    变分自编码器 VAE
   </span>
   
 
@@ -583,11 +594,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/Pytorch_CNN/" class="md-nav__link">
+      <a href="../../../ML_Pages/Pytorch_CNN/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Exercise_CNN
+    CNN编程练习 CNN Practice
   </span>
   
 
@@ -604,11 +615,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/Pytorch_MLP/" class="md-nav__link">
+      <a href="../../../ML_Pages/Pytorch_MLP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Exercise_MLP
+    MLP编程练习 MLP Practice
   </span>
   
 
@@ -625,11 +636,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/Pytorch_RNN/" class="md-nav__link">
+      <a href="../../../ML_Pages/Pytorch_RNN/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Exercise_RNN
+    RNN编程练习 RNN Practice
   </span>
   
 
@@ -646,11 +657,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ML_Pages/Pytorch_VAE/" class="md-nav__link">
+      <a href="../../../ML_Pages/Pytorch_VAE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Exercise_VAE
+    VAE编程练习 VAE Practice
   </span>
   
 
@@ -698,7 +709,7 @@
             
   
   <span class="md-ellipsis">
-    LLM Structure
+    大语言模型结构 LLM Structure
   </span>
   
 
@@ -708,7 +719,50 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            LLM Structure
+            大语言模型结构 LLM Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Transformer架构 Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Transformer架构 Architecture
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -719,11 +773,106 @@
   
   
     <li class="md-nav__item">
-      <a href="../LLM_Architecture/" class="md-nav__link">
+      <a href="../../LLM_Architecture/LLM_Architecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Transformer经典架构
+    Transformer经典架构 Classical Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Architecture/Llama3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llama3架构 Llama3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    归一化 Normalization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            归一化 Normalization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LayerNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    层归一化 LayerNorm
   </span>
   
 
@@ -753,7 +902,7 @@
           
   
   <span class="md-ellipsis">
-    位置编码
+    批归一化 BatchNorm
   </span>
   
 
@@ -764,7 +913,7 @@
         
   
   <span class="md-ellipsis">
-    位置编码
+    批归一化 BatchNorm
   </span>
   
 
@@ -786,166 +935,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 位置编码的要求
+      简介
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 位置编码的要求">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 位置向量之间的运算
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1 位置向量之间的运算">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      解释
+      工作原理
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 位置编码方法比较
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. 位置编码方法比较">
+    <nav class="md-nav" aria-label="工作原理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-sinusoidal-position-encoding" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 绝对位置编码（Sinusoidal Position Encoding）
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.1 绝对位置编码（Sinusoidal Position Encoding）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#211" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1.1 定义
+      归一化步骤
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#212" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1.2 相对位置表示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-rope-rotary-position-embedding" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 RoPE (Rotary Position Embedding)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.2 RoPE (Rotary Position Embedding)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#221" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2.1 定义
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#222" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2.2 相对位置表示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-alibi-attention-with-linear-biases" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3 ALiBi (Attention with Linear Biases)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.3 ALiBi (Attention with Linear Biases)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#231" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3.1 定义
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#232" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3.2 注意力计算
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#233" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3.3 关键特性
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.4 比较分析
+      最终公式
     </span>
   </a>
   
@@ -957,9 +977,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 位置编码方法在大型语言模型中的应用
+      常用符号
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      一个具体的例子：
     </span>
   </a>
   
@@ -981,11 +1010,40 @@
   
   
     <li class="md-nav__item">
-      <a href="../Pre-Train/" class="md-nav__link">
+      <a href="../RMSNorm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    预训练阶段
+    均方根归一化 RMSNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Positional_Embedding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    位置编码 Positional Embedding
   </span>
   
 
@@ -1002,11 +1060,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Post-Train/" class="md-nav__link">
+      <a href="../../Pre-Train/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    后训练阶段
+    预训练阶段 Pre-Train
   </span>
   
 
@@ -1023,11 +1081,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../MoE_Architecture/" class="md-nav__link">
+      <a href="../../Post-Train/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    MoE数学架构
+    后训练阶段 Post-Train
   </span>
   
 
@@ -1044,11 +1102,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../Llama3/" class="md-nav__link">
+      <a href="../../MoE_Architecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Llama3架构
+    MoE数学架构 Mathematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Llama3.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llama3架构 Architecture
   </span>
   
 
@@ -1091,7 +1170,7 @@
             
   
   <span class="md-ellipsis">
-    SFT
+    指令微调 SFT
   </span>
   
 
@@ -1101,7 +1180,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            SFT
+            指令微调 SFT
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1112,11 +1191,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../SFT_Pages/SFT/" class="md-nav__link">
+      <a href="../../../SFT_Pages/SFT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SFT
+    监督微调 SFT
   </span>
   
 
@@ -1133,11 +1212,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../SFT_Pages/Lora/" class="md-nav__link">
+      <a href="../../../SFT_Pages/Lora/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Lora
+    低秩适应 Lora
   </span>
   
 
@@ -1180,7 +1259,7 @@
             
   
   <span class="md-ellipsis">
-    Frame Work
+    框架实践 Framework
   </span>
   
 
@@ -1190,7 +1269,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Frame Work
+            框架实践 Framework
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1201,11 +1280,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Engineering_Pages/LlamaFactory/" class="md-nav__link">
+      <a href="../../../Engineering_Pages/LlamaFactory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    LlamaFactory入门
+    LlamaFactory入门 Introduction
   </span>
   
 
@@ -1222,11 +1301,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Engineering_Pages/Full_SFT_LlamaFactory/" class="md-nav__link">
+      <a href="../../../Engineering_Pages/Full_SFT_LlamaFactory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    全量微调
+    全量微调 Full SFT
   </span>
   
 
@@ -1243,11 +1322,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Engineering_Pages/Pytorch/Basic_1_Tensor/" class="md-nav__link">
+      <a href="../../../Engineering_Pages/Pytorch/Basic_1_Tensor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pytorch Tensor
+    Pytorch张量 Tensor
   </span>
   
 
@@ -1264,11 +1343,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Engineering_Pages/Pytorch/Basic_2_Autograd/" class="md-nav__link">
+      <a href="../../../Engineering_Pages/Pytorch/Basic_2_Autograd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pytorch Autograd
+    Pytorch自动微分 Autograd
   </span>
   
 
@@ -1285,11 +1364,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Engineering_Pages/Pytorch/How_to_Load_Data/" class="md-nav__link">
+      <a href="../../../Engineering_Pages/Pytorch/How_to_Load_Data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pytorch load Data
+    Pytorch数据加载 Data Loading
   </span>
   
 
@@ -1306,11 +1385,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Engineering_Pages/Pytorch/How_to_Train_Model/" class="md-nav__link">
+      <a href="../../../Engineering_Pages/Pytorch/How_to_Train_Model/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Pytorch train Model
+    Pytorch模型训练 Model Training
   </span>
   
 
@@ -1353,7 +1432,7 @@
             
   
   <span class="md-ellipsis">
-    RLHF
+    人类反馈强化学习 RLHF
   </span>
   
 
@@ -1363,7 +1442,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            RLHF
+            人类反馈强化学习 RLHF
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1374,11 +1453,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/DPO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/DPO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    DPO
+    直接偏好优化 DPO
   </span>
   
 
@@ -1395,11 +1474,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/DPO_Exercise/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/DPO_Exercise/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    DPO_Exercice
+    DPO编程练习 DPO Practice
   </span>
   
 
@@ -1416,11 +1495,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/DPO_Problem/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/DPO_Problem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    DPO_Problem
+    DPO问题分析 Problems
   </span>
   
 
@@ -1437,11 +1516,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/DPO_Math/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/DPO_Math/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    DPO_Math
+    DPO数学原理 Mathematics
   </span>
   
 
@@ -1458,11 +1537,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/PPO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/PPO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PPO
+    近端策略优化 PPO
   </span>
   
 
@@ -1479,11 +1558,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/PPO_Loss/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/PPO_Loss/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PPO_Loss
+    PPO损失函数 Loss
   </span>
   
 
@@ -1500,11 +1579,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/RM_Full_FT_or_Lora/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/RM_Full_FT_or_Lora/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    RM_Full_FT_or_Lora
+    奖励模型训练方式 RM Training
   </span>
   
 
@@ -1521,11 +1600,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/RM_Training/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/RM_Training/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    RM_Training
+    奖励模型训练 RM Training
   </span>
   
 
@@ -1542,11 +1621,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/GRPO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/GRPO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    GRPO
+    群组相对策略优化 GRPO
   </span>
   
 
@@ -1563,11 +1642,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/MCTS_DPO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/MCTS_DPO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    MCTS_DPO
+    蒙特卡洛树DPO MCTS-DPO
   </span>
   
 
@@ -1584,11 +1663,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/KTO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/KTO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    KTO
+    KL约束优化 KTO
   </span>
   
 
@@ -1605,11 +1684,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/SimPO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/SimPO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SimPO
+    简单偏好优化 SimPO
   </span>
   
 
@@ -1626,11 +1705,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/SimPO_Exercise/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/SimPO_Exercise/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SimPO_Exercice
+    SimPO编程练习 SimPO Practice
   </span>
   
 
@@ -1647,11 +1726,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/RM_Exercise/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/RM_Exercise/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    RM_Exercise
+    奖励模型练习 RM Practice
   </span>
   
 
@@ -1668,11 +1747,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RLHF_Pages/NPO/" class="md-nav__link">
+      <a href="../../../RLHF_Pages/NPO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    NPO
+    负偏好优化 NPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/FPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征偏好优化 FPO
   </span>
   
 
@@ -1716,166 +1816,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      1. 位置编码的要求
+      简介
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 位置编码的要求">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 位置向量之间的运算
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1 位置向量之间的运算">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      解释
+      工作原理
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. 位置编码方法比较
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. 位置编码方法比较">
+    <nav class="md-nav" aria-label="工作原理">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-sinusoidal-position-encoding" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 绝对位置编码（Sinusoidal Position Encoding）
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.1 绝对位置编码（Sinusoidal Position Encoding）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#211" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1.1 定义
+      归一化步骤
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#212" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1.2 相对位置表示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-rope-rotary-position-embedding" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 RoPE (Rotary Position Embedding)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.2 RoPE (Rotary Position Embedding)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#221" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2.1 定义
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#222" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2.2 相对位置表示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-alibi-attention-with-linear-biases" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3 ALiBi (Attention with Linear Biases)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.3 ALiBi (Attention with Linear Biases)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#231" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3.1 定义
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#232" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3.2 注意力计算
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#233" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.3.3 关键特性
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.4 比较分析
+      最终公式
     </span>
   </a>
   
@@ -1887,9 +1858,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      3. 位置编码方法在大型语言模型中的应用
+      常用符号
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      一个具体的例子：
     </span>
   </a>
   
@@ -1910,389 +1890,129 @@
                   
 
 
-<p><a href="https://github.com/InuyashaYang/JoinAI"><img alt="GitHub stars" src="https://img.shields.io/github/stars/InuyashaYang/JoinAI?style=social" /></a></p>
-<h1 id="_1">位置编码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="1">1. 位置编码的要求<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p>位置编码在序列模型中扮演着至关重要的角色。一个理想的位置编码应满足以下要求：</p>
-<table>
-<thead>
-<tr>
-<th>性质</th>
-<th>描述</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>唯一性</td>
-<td>每个位置输出一个唯一的编码</td>
-<td>使模型能够区分和定位序列中的每个元素</td>
-</tr>
-<tr>
-<td>外推性</td>
-<td>具备良好的外推能力，可处理未见过的位置</td>
-<td>允许模型处理变长序列和超出训练范围的位置</td>
-</tr>
-<tr>
-<td>相对位置表示</td>
-<td>两位置之间的差异性只和其相对位置k有关</td>
-<td>使模型能学习位置无关的模式和关系</td>
-</tr>
-<tr>
-<td>距离相关性</td>
-<td>相对位置k差越大，两位置之关联越弱</td>
-<td>反映了语言的局部性原理，近距离词通常关系更密切</td>
-</tr>
-</tbody>
-</table>
-<h3 id="11">1.1 位置向量之间的运算<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
-<p>我们定义 <span class="arithmatex">\(f(i, j)\)</span> 为位置 <span class="arithmatex">\(i\)</span> 和位置 <span class="arithmatex">\(j\)</span> 之间的注意力交互函数：</p>
-<p><span class="arithmatex">\(f(i, j) = ((x_i + p_i)W_q)^T ((x_j + p_j)W_k)\)</span></p>
-<p>其中：
-- <span class="arithmatex">\(x_i\)</span>, <span class="arithmatex">\(x_j\)</span> 是词向量
-- <span class="arithmatex">\(p_i\)</span>, <span class="arithmatex">\(p_j\)</span> 是位置编码
-- <span class="arithmatex">\(W_q\)</span>, <span class="arithmatex">\(W_k\)</span> 是权重矩阵</p>
-<p>展开 <span class="arithmatex">\(f(i, j)\)</span>：</p>
-<p><span class="arithmatex">\(f(i, j) = (x_i W_q + p_i W_q)^T (x_j W_k + p_j W_k)\)</span></p>
-<p><span class="arithmatex">\(\quad\;\; = (x_i W_q)^T (x_j W_k) + (x_i W_q)^T (p_j W_k) + (p_i W_q)^T (x_j W_k) + (p_i W_q)^T (p_j W_k)\)</span></p>
-<p><span class="arithmatex">\(\quad\;\; = x_i^T W_q^T W_k x_j + x_i^T W_q^T W_k p_j + p_i^T W_q^T W_k x_j + p_i^T W_q^T W_k p_j\)</span></p>
-<h4 id="_2">解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
-<p>完全展开后的 <span class="arithmatex">\(f(i, j)\)</span> 包含四个项：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">项</th>
-<th style="text-align: center;">数学表达式</th>
-<th style="text-align: center;">名称</th>
-<th style="text-align: left;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;"><span class="arithmatex">\(x_i^T W_q^T W_k x_j\)</span></td>
-<td style="text-align: center;">纯词向量交互</td>
-<td style="text-align: left;">捕捉位置 <span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(j\)</span> 的词向量之间的语义关系</td>
-</tr>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;"><span class="arithmatex">\(x_i^T W_q^T W_k p_j\)</span></td>
-<td style="text-align: center;">词向量-位置编码交互</td>
-<td style="text-align: left;">允许模型考虑位置 <span class="arithmatex">\(i\)</span> 的词与位置 <span class="arithmatex">\(j\)</span> 的相对位置关系</td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;"><span class="arithmatex">\(p_i^T W_q^T W_k x_j\)</span></td>
-<td style="text-align: center;">位置编码-词向量交互</td>
-<td style="text-align: left;">考虑位置 <span class="arithmatex">\(i\)</span> 相对于位置 <span class="arithmatex">\(j\)</span> 的词的影响</td>
-</tr>
-<tr>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;"><span class="arithmatex">\(p_i^T W_q^T W_k p_j\)</span></td>
-<td style="text-align: center;">纯位置编码交互</td>
-<td style="text-align: left;">捕捉两个位置之间的纯粹相对位置关系</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2">2. 位置编码方法比较<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<h3 id="21-sinusoidal-position-encoding">2.1 绝对位置编码（Sinusoidal Position Encoding）<a class="headerlink" href="#21-sinusoidal-position-encoding" title="Permanent link">&para;</a></h3>
-<h4 id="211">2.1.1 定义<a class="headerlink" href="#211" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="arithmatex">\(pos\)</span></td>
-<td>位置索引</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(i\)</span></td>
-<td>维度索引</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(d_{model}\)</span></td>
-<td>模型维度</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>编码类型</th>
-<th>公式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>偶数维度</td>
-<td><span class="arithmatex">\(PE_{(pos,2i)} = \sin(pos / 10000^{2i/d_{model}})\)</span></td>
-</tr>
-<tr>
-<td>奇数维度</td>
-<td><span class="arithmatex">\(PE_{(pos,2i+1)} = \cos(pos / 10000^{2i/d_{model}})\)</span></td>
-</tr>
-</tbody>
-</table>
-<h4 id="212">2.1.2 相对位置表示<a class="headerlink" href="#212" title="Permanent link">&para;</a></h4>
-<p>对于每对 <span class="arithmatex">\((2i, 2i+1)\)</span> 维度：</p>
-<p><span class="arithmatex">\(\begin{bmatrix} 
-PE_{(pos+k, 2i)} \\
-PE_{(pos+k, 2i+1)}
-\end{bmatrix} = 
-\begin{bmatrix} 
-\cos(k\omega_i) &amp; -\sin(k\omega_i) \\
-\sin(k\omega_i) &amp; \cos(k\omega_i)
-\end{bmatrix}
-\begin{bmatrix} 
-PE_{(pos, 2i)} \\
-PE_{(pos, 2i+1)}
-\end{bmatrix}\)</span></p>
-<p>其中 <span class="arithmatex">\(\omega_i = 1/10000^{2i/d_{model}}\)</span></p>
-<h3 id="22-rope-rotary-position-embedding">2.2 RoPE (Rotary Position Embedding)<a class="headerlink" href="#22-rope-rotary-position-embedding" title="Permanent link">&para;</a></h3>
-<h4 id="221">2.2.1 定义<a class="headerlink" href="#221" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="arithmatex">\(m\)</span></td>
-<td>位置索引</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(i\)</span></td>
-<td>维度索引</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(d\)</span></td>
-<td>模型维度</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\theta_i\)</span></td>
-<td><span class="arithmatex">\(10000^{-2i/d}\)</span></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>向量</th>
-<th>定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="arithmatex">\(\mathbf{q}_m\)</span></td>
-<td><span class="arithmatex">\([q_0, q_1, ..., q_{d-1}]\)</span></td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(\mathbf{k}_m\)</span></td>
-<td><span class="arithmatex">\([k_0, k_1, ..., k_{d-1}]\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>RoPE 操作：</p>
-<p><span class="arithmatex">\(R_{\Theta,m}(\mathbf{q}_m)_i = [q_i \cos(m\theta_i) - q_{i+1} \sin(m\theta_i), q_i \sin(m\theta_i) + q_{i+1} \cos(m\theta_i)]\)</span></p>
-<h4 id="222">2.2.2 相对位置表示<a class="headerlink" href="#222" title="Permanent link">&para;</a></h4>
-<p><span class="arithmatex">\(\langle R_{\Theta,m}(\mathbf{q}), R_{\Theta,n}(\mathbf{k}) \rangle = f(\mathbf{q}, \mathbf{k}, n-m)\)</span></p>
-<h3 id="23-alibi-attention-with-linear-biases">2.3 ALiBi (Attention with Linear Biases)<a class="headerlink" href="#23-alibi-attention-with-linear-biases" title="Permanent link">&para;</a></h3>
-<p>ALiBi 通过在注意力分数中添加线性偏置来编码位置信息，实际上替换了传统注意力计算中的位置编码相关项。</p>
-<h4 id="231">2.3.1 定义<a class="headerlink" href="#231" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>定义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="arithmatex">\(q\)</span></td>
-<td>查询向量</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(k\)</span></td>
-<td>键向量</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(i, j\)</span></td>
-<td>查询和键的位置索引</td>
-</tr>
-<tr>
-<td><span class="arithmatex">\(m\)</span></td>
-<td>预定义斜率</td>
-</tr>
-</tbody>
-</table>
-<h4 id="232">2.3.2 注意力计算<a class="headerlink" href="#232" title="Permanent link">&para;</a></h4>
-<p>ALiBi 修改了传统的注意力计算方式。对比传统方法和 ALiBi：</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>注意力分数计算</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>传统方法</td>
-<td><span class="arithmatex">\(a(q, k) = (x_i W_q)^T (x_j W_k) + (x_i W_q)^T (p_j W_k) + (p_i W_q)^T (x_j W_k) + (p_i W_q)^T (p_j W_k)\)</span></td>
-</tr>
-<tr>
-<td>ALiBi</td>
-<td>$ a(q, k) = q^T k - m ×\text{abs}(i-j) $</td>
-</tr>
-</tbody>
-</table>
-<p>其中，ALiBi 的 <span class="arithmatex">\(q^T k\)</span> 对应传统方法中的 <span class="arithmatex">\(x_i^T W_q^T W_k x_j\)</span>（纯词向量交互），而 <span class="arithmatex">\(- m|i-j|\)</span> 项替代了传统方法中的其他三项（词向量-位置编码交互、位置编码-词向量交互和纯位置编码交互）。</p>
-<h4 id="233">2.3.3 关键特性<a class="headerlink" href="#233" title="Permanent link">&para;</a></h4>
+<h1 id="batch-normalization">批归一化（Batch Normalization）简介与推导<a class="headerlink" href="#batch-normalization" title="Permanent link">&para;</a></h1>
+<h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>批归一化（Batch Normalization）</strong> 是一种在深度学习模型中用于规范化神经网络层输入的方法。它通过对一个小批次（mini-batch）内的激活值进行归一化处理，旨在加速训练过程、提高模型稳定性，并提升模型的泛化能力。BatchNorm 能有效缓解内部协变量偏移（Internal Covariate Shift）的问题，从而允许使用更高的学习率，加快模型收敛速度，并减少对初始化的敏感性。</p>
+<h2 id="_2">工作原理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>批归一化的核心思想是在每个小批次内，对神经网络层的激活值进行归一化操作。具体步骤包括计算小批次的均值与方差、执行归一化以及应用可学习的缩放和平移参数。</p>
+<h3 id="_3">归一化步骤<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>对于一个输入矩阵 $ \mathbf{X} \in \mathbb{R}^{N \times D} <span class="arithmatex">\(，其中 <span class="arithmatex">\(N\)</span> 是批次大小，\)</span>D$ 是特征维度，BatchNorm 的计算过程如下：</p>
 <ol>
-<li><strong>简化计算</strong>：ALiBi 通过一个简单的线性项替代了复杂的位置编码交互。</li>
-<li><strong>直接编码相对位置</strong>：<span class="arithmatex">\(|i-j|\)</span> 项直接表示了查询和键之间的相对距离。</li>
-<li><strong>消除显式位置编码</strong>：不再需要为输入序列添加单独的位置编码。</li>
+<li>
+<p><strong>计算批次均值 (<span class="arithmatex">\(\mu\)</span>)</strong>：
+    $$
+    \mu = \frac{1}{N} \sum_{i=1}^{N} x_i
+    $$</p>
+</li>
+<li>
+<p><strong>计算批次方差 (<span class="arithmatex">\(\sigma^2\)</span>)</strong>：
+    $$
+    \sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2
+    $$</p>
+</li>
+<li>
+<p><strong>归一化</strong>：
+    $$
+    \hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}
+    $$
+    其中，$ \epsilon $ 是一个极小的常数，防止分母为零。</p>
+</li>
+<li>
+<p><strong>缩放和平移</strong>：
+    $$
+    y_i = \gamma \cdot \hat{x}_i + \beta
+    $$
+    这里，$ \gamma $ 和 $ \beta $ 是可学习的参数，用于调整归一化后的输出。</p>
+</li>
 </ol>
-<p>这种方法有效地将位置信息整合到注意力机制中，同时简化了计算过程。通过替换传统注意力计算中的位置编码相关项，ALiBi 提供了一种更直接、更高效的方式来处理序列中的位置信息。</p>
-<h3 id="24">2.4 比较分析<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<h3 id="_4">最终公式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>将上述步骤综合起来，BatchNorm 的数学表达式为：</p>
+<div class="arithmatex">\[
+\text{BatchNorm}(\mathbf{X}) = \gamma \cdot \frac{\mathbf{X} - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
+\]</div>
+<h2 id="_5">常用符号<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>方法</th>
-<th>优点</th>
-<th>缺点</th>
+<th>符号</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Sinusoidal</td>
-<td>可以处理任意长度序列；具有良好的数学性质</td>
-<td>可能难以捕捉非常长的依赖关系</td>
+<td>$ \mathbf{X} $</td>
+<td>输入矩阵</td>
 </tr>
 <tr>
-<td>RoPE</td>
-<td>自然地表示相对位置；计算效率高</td>
-<td>实现相对复杂</td>
+<td>$ N $</td>
+<td>批次大小</td>
 </tr>
 <tr>
-<td>ALiBi</td>
-<td>简单有效；易于实现和理解</td>
-<td>可能不适合某些需要复杂位置关系的任务</td>
+<td>$ D $</td>
+<td>特征维度</td>
+</tr>
+<tr>
+<td>$ \mu $</td>
+<td>批次均值</td>
+</tr>
+<tr>
+<td>$ \sigma^2 $</td>
+<td>批次方差</td>
+</tr>
+<tr>
+<td>$ \gamma $</td>
+<td>缩放参数</td>
+</tr>
+<tr>
+<td>$ \beta $</td>
+<td>平移参数</td>
+</tr>
+<tr>
+<td>$ \epsilon $</td>
+<td>稳定常数</td>
 </tr>
 </tbody>
 </table>
-<h2 id="3">3. 位置编码方法在大型语言模型中的应用<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>模型</th>
-<th>位置编码方法</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GPT-2</td>
-<td>学习的绝对位置嵌入</td>
-<td>每个位置都有一个可学习的嵌入向量</td>
-</tr>
-<tr>
-<td>GPT-3</td>
-<td>学习的绝对位置嵌入</td>
-<td>与 GPT-2 类似，但扩展到更长的序列</td>
-</tr>
-<tr>
-<td>BERT</td>
-<td>学习的绝对位置嵌入</td>
-<td>类似于 GPT-2，但用于双向注意力</td>
-</tr>
-<tr>
-<td>T5</td>
-<td>相对位置编码</td>
-<td>使用相对位置偏置而不是绝对位置</td>
-</tr>
-<tr>
-<td>XLNet</td>
-<td>相对位置编码</td>
-<td>使用双向相对位置编码</td>
-</tr>
-<tr>
-<td>ALBERT</td>
-<td>学习的绝对位置嵌入</td>
-<td>与 BERT 类似</td>
-</tr>
-<tr>
-<td>RoBERTa</td>
-<td>学习的绝对位置嵌入</td>
-<td>与 BERT 类似，但移除了位置嵌入的可学习性</td>
-</tr>
-<tr>
-<td>DeBERTa</td>
-<td>相对位置编码</td>
-<td>使用解耦的注意力机制</td>
-</tr>
-<tr>
-<td>PaLM</td>
-<td>RoPE (Rotary Position Embedding)</td>
-<td>使用旋转位置编码</td>
-</tr>
-<tr>
-<td>LLaMA</td>
-<td>RoPE (Rotary Position Embedding)</td>
-<td>使用旋转位置编码</td>
-</tr>
-<tr>
-<td>BLOOM</td>
-<td>ALiBi (Attention with Linear Biases)</td>
-<td>使用线性偏置注意力</td>
-</tr>
-<tr>
-<td>ERNIE 3.0</td>
-<td>相对位置编码</td>
-<td>使用相对位置表示</td>
-</tr>
-<tr>
-<td>Falcon</td>
-<td>ALiBi (Attention with Linear Biases)</td>
-<td>使用线性偏置注意力</td>
-</tr>
-<tr>
-<td>Vicuna</td>
-<td>RoPE (Rotary Position Embedding)</td>
-<td>基于 LLaMA，使用旋转位置编码</td>
-</tr>
-<tr>
-<td>Alpaca</td>
-<td>RoPE (Rotary Position Embedding)</td>
-<td>基于 LLaMA，使用旋转位置编码</td>
-</tr>
-<tr>
-<td>BART</td>
-<td>学习的绝对位置嵌入</td>
-<td>类似于 BERT，用于序列到序列任务</td>
-</tr>
-</tbody>
-</table>
-<script src="https://giscus.app/client.js"
-        data-repo="InuyashaYang/AIDIY"
-        data-repo-id="R_kgDOM1VVTQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOM1VVTc4Ckls_"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
+<h2 id="_6">一个具体的例子：<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>假设我们有一个 2x4 的矩阵作为输入，即一个批次包含 2 个样本，每个样本的特征维度是 4：</p>
+<div class="highlight"><pre><span></span><code>X = [[ 1.0,  2.0,  3.0,  4.0],
+     [5.0,  6.0,  7.0,  8.0]]
+</code></pre></div>
+<p>为了简化计算，我们先设 <span class="arithmatex">\(\epsilon = 0\)</span>，并且假设缩放参数 <span class="arithmatex">\(\gamma\)</span> 为全1向量，平移参数 <span class="arithmatex">\(\beta\)</span> 为全0向量。</p>
+<p><strong>步骤 1: 计算批次的均值 (<span class="arithmatex">\(\mu\)</span>)</strong></p>
+<div class="highlight"><pre><span></span><code>μ = [ (1 + 5)/2, (2 + 6)/2, (3 + 7)/2, (4 + 8)/2 ] = [3.0, 4.0, 5.0, 6.0]
+</code></pre></div>
+<p><strong>步骤 2: 计算批次的方差 (<span class="arithmatex">\(\sigma^2\)</span>)</strong></p>
+<div class="highlight"><pre><span></span><code>σ² = [ ((1 - 3)² + (5 - 3)²)/2,
+        ((2 - 4)² + (6 - 4)²)/2,
+        ((3 - 5)² + (7 - 5)²)/2,
+        ((4 - 6)² + (8 - 6)²)/2 ]
+
+    = [ (4 + 4)/2, (4 + 4)/2, (4 + 4)/2, (4 + 4)/2 ]
+    = [4.0, 4.0, 4.0, 4.0]
+</code></pre></div>
+<p><strong>步骤 3: 计算标准差 (<span class="arithmatex">\(\sigma\)</span>)</strong></p>
+<div class="highlight"><pre><span></span><code>σ = √σ² = [2.0, 2.0, 2.0, 2.0]
+</code></pre></div>
+<p><strong>步骤 4: 进行归一化</strong></p>
+<div class="highlight"><pre><span></span><code>对于第一个样本：
+    y₁ = [(1 - 3)/2, (2 - 4)/2, (3 - 5)/2, (4 - 6)/2]
+       = [-1.0, -1.0, -1.0, -1.0]
+
+对于第二个样本：
+    y₂ = [(5 - 3)/2, (6 - 4)/2, (7 - 5)/2, (8 - 6)/2]
+       = [1.0, 1.0, 1.0, 1.0]
+</code></pre></div>
+<p><strong>步骤 5: 应用缩放和平移 (这里 <span class="arithmatex">\(\gamma\)</span> 为全1, <span class="arithmatex">\(\beta\)</span> 为全0，所以结果不变)</strong></p>
+<div class="highlight"><pre><span></span><code>最终输出矩阵 Y 与归一化后的结果相同：
+Y = [[-1.0, -1.0, -1.0, -1.0],
+     [ 1.0,  1.0,  1.0,  1.0]]
+</code></pre></div>
+<p><strong>最终结果</strong></p>
+<p>批归一化后的矩阵为：</p>
+<div class="highlight"><pre><span></span><code>BatchNorm(X) = [[-1.0, -1.0, -1.0, -1.0],
+               [ 1.0,  1.0,  1.0,  1.0]]
+</code></pre></div>
 
 
 
@@ -2354,14 +2074,14 @@ PE_{(pos, 2i+1)}
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
-        <script src="../../javascripts/mathjax_config.js"></script>
+        <script src="../../../javascripts/mathjax_config.js"></script>
       
     
   </body>
