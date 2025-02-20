@@ -1,0 +1,3023 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../NPO/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>特征偏好优化 FPO - AIDIY Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sae-in-fpo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AIDIY Wiki" class="md-header__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AIDIY Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              特征偏好优化 FPO
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-tabs__link">
+          
+  
+  数学基础 Mathematical Foundation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ML_Pages/CNN/" class="md-tabs__link">
+          
+  
+  经典机器学习 Classic ML
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LLM_Pages/LLM_Architecture/LLM_Architecture/" class="md-tabs__link">
+          
+  
+  大语言模型结构 LLM Structure
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../SFT_Pages/SFT/" class="md-tabs__link">
+          
+  
+  指令微调 SFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Engineering_Pages/LlamaFactory/" class="md-tabs__link">
+          
+  
+  框架实践 Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DPO/" class="md-tabs__link">
+          
+  
+  人类反馈强化学习 RLHF
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AIDIY Wiki" class="md-nav__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AIDIY Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页 Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数学基础 Mathematical Foundation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            数学基础 Mathematical Foundation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵满秩分解 Full Rank Decomposition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Calculation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵求导 Matrix Calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mathematical_Foundation/Manifold/Manifold_hypothesis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    流形假设 Manifold Hypothesis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    经典机器学习 Classic ML
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            经典机器学习 Classic ML
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积神经网络 CNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/MLP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多层感知机 MLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    循环神经网络 RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/VAE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    变分自编码器 VAE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/Pytorch_CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CNN编程练习 CNN Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/Pytorch_MLP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLP编程练习 MLP Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/Pytorch_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN编程练习 RNN Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ML_Pages/Pytorch_VAE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VAE编程练习 VAE Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    大语言模型结构 LLM Structure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            大语言模型结构 LLM Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Transformer架构 Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Transformer架构 Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/LLM_Architecture/LLM_Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer经典架构 Classical Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/LLM_Architecture/Llama3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llama3架构 Llama3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    归一化 Normalization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            归一化 Normalization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Normalization/LayerNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    层归一化 LayerNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Normalization/BatchNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    批归一化 BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Normalization/RMSNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    均方根归一化 RMSNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Positional_Embedding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    位置编码 Positional Embedding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Pre-Train/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练阶段 Pre-Train
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Post-Train/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后训练阶段 Post-Train
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/MoE_Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MoE数学架构 Mathematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Pages/Llama3.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llama3架构 Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    指令微调 SFT
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            指令微调 SFT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SFT_Pages/SFT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    监督微调 SFT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SFT_Pages/Lora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    低秩适应 Lora
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    框架实践 Framework
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            框架实践 Framework
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engineering_Pages/LlamaFactory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LlamaFactory入门 Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engineering_Pages/Full_SFT_LlamaFactory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全量微调 Full SFT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engineering_Pages/Pytorch/Basic_1_Tensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch张量 Tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engineering_Pages/Pytorch/Basic_2_Autograd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch自动微分 Autograd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engineering_Pages/Pytorch/How_to_Load_Data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch数据加载 Data Loading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Engineering_Pages/Pytorch/How_to_Train_Model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch模型训练 Model Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    人类反馈强化学习 RLHF
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            人类反馈强化学习 RLHF
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    直接偏好优化 DPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DPO_Exercise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DPO编程练习 DPO Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DPO_Problem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DPO问题分析 Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DPO_Math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DPO数学原理 Mathematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    近端策略优化 PPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PPO_Loss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PPO损失函数 Loss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RM_Full_FT_or_Lora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奖励模型训练方式 RM Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RM_Training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奖励模型训练 RM Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    群组相对策略优化 GRPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCTS_DPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    蒙特卡洛树DPO MCTS-DPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KTO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL约束优化 KTO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简单偏好优化 SimPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimPO_Exercise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SimPO编程练习 SimPO Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RM_Exercise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奖励模型练习 RM Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    负偏好优化 NPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    特征偏好优化 FPO
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    特征偏好优化 FPO
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sparse-auto-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sparse Auto Encoder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sparse Auto Encoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-auto-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Auto-Encoder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Auto-Encoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 网络组件定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 通用优化目标
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 变体架构对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      FPO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tdpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TDPO的设计
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TDPO的设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、优化问题形式化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、拉格朗日函数构造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、极值必要条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、极值必要条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 对策略变量求导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 对乘子求导恢复约束
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、联立方程求解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、联立方程求解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 通解表达式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 归一化条件应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 最终闭式解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、完整推导流程图
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验设计
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      超参数设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kl" class="md-nav__link">
+    <span class="md-ellipsis">
+      关于KL散度约束的推导
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关于KL散度约束的推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、符号系统明确
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、一阶导数计算（梯度）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、一阶导数计算（梯度）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：展开求和项
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：求导目标简化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：链式法则应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤4：softmax导数计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤5：代入并化简
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hessian" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、二阶导数计算（Hessian矩阵）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、二阶导数计算（Hessian矩阵）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：从一阶导数出发
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：再次应用softmax导数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：矩阵形式展开
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算复杂度优化分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="计算复杂度优化分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现效率的关键设计
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sparse-auto-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sparse Auto Encoder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sparse Auto Encoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-auto-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Auto-Encoder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Auto-Encoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 网络组件定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 通用优化目标
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 变体架构对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      FPO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tdpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      TDPO的设计
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TDPO的设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、优化问题形式化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、拉格朗日函数构造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、极值必要条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、极值必要条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 对策略变量求导
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 对乘子求导恢复约束
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、联立方程求解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、联立方程求解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 通解表达式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 归一化条件应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 最终闭式解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、完整推导流程图
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验设计
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      超参数设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kl" class="md-nav__link">
+    <span class="md-ellipsis">
+      关于KL散度约束的推导
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关于KL散度约束的推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、符号系统明确
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、一阶导数计算（梯度）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、一阶导数计算（梯度）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：展开求和项
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：求导目标简化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：链式法则应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤4：softmax导数计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤5：代入并化简
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hessian" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、二阶导数计算（Hessian矩阵）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、二阶导数计算（Hessian矩阵）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤1：从一阶导数出发
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤2：再次应用softmax导数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤3：矩阵形式展开
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算复杂度优化分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="计算复杂度优化分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现效率的关键设计
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="sae-in-fpo">SAE in FPO<a class="headerlink" href="#sae-in-fpo" title="Permanent link">&para;</a></h1>
+<h2 id="sparse-auto-encoder"><strong>Sparse Auto Encoder</strong><a class="headerlink" href="#sparse-auto-encoder" title="Permanent link">&para;</a></h2>
+<h3 id="1-auto-encoder"><strong>1. Auto-Encoder</strong><a class="headerlink" href="#1-auto-encoder" title="Permanent link">&para;</a></h3>
+<p>无监督学习 自编码器</p>
+<h4 id="11">1.1 网络组件定义<a class="headerlink" href="#11" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>数学表达</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>编码器</strong></td>
+<td><span class="arithmatex">\(h = f_\theta(x) = \sigma(Wx + b)\)</span></td>
+<td>将输入<span class="arithmatex">\(x \in \mathbb{R}^{d_x}\)</span>映射到潜在空间<span class="arithmatex">\(h \in \mathbb{R}^{d_h}\)</span></td>
+</tr>
+<tr>
+<td><strong>瓶颈层</strong></td>
+<td><span class="arithmatex">\(\text{dim}(h) = d_h \ll d_x\)</span></td>
+<td>压缩关键特征，控制信息容量</td>
+</tr>
+<tr>
+<td><strong>解码器</strong></td>
+<td><span class="arithmatex">\(\hat{x} = g_\phi(h) = \sigma'(W'h + b')\)</span></td>
+<td>从潜在表示重建输入<span class="arithmatex">\(\hat{x} \in \mathbb{R}^{d_x}\)</span></td>
+</tr>
+<tr>
+<td><strong>重建误差</strong></td>
+<td><span class="arithmatex">\(L(x,\hat{x}) = \|x - \hat{x}\|^2\)</span></td>
+<td>衡量输入与重建输出的差异</td>
+</tr>
+</tbody>
+</table>
+<h4 id="12">1.2 通用优化目标<a class="headerlink" href="#12" title="Permanent link">&para;</a></h4>
+<p>$$
+\min_{\theta,\phi} \underbrace{\mathbb{E}<em data="data">{x \sim p</em> + \lambda R(\theta,\phi)
+$$
+- }} \left[ | x - g_\phi(f_\theta(x)) |^2 \right]}_{\text{重构损失}<span class="arithmatex">\(\theta = \{W, b\}\)</span>：编码器参数<br />
+- <span class="arithmatex">\(\phi = \{W', b'\}\)</span>：解码器参数<br />
+- <span class="arithmatex">\(R(\cdot)\)</span>：正则化项</p>
+<hr />
+<h3 id="2"><strong>2. 变体架构对比</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>结构特点</th>
+<th>正则化项<span class="arithmatex">\(R(\theta,\phi)\)</span></th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sparse AE</strong></td>
+<td>隐藏层激活稀疏约束</td>
+<td><span class="arithmatex">\(R = \|W\|_F^2 + \|W'\|_F^2 + \beta \Omega(h)\)</span></td>
+<td>分类任务特征学习</td>
+</tr>
+<tr>
+<td>---</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<summary>SAE的特征抽取</summary>
+
+<details>
+
+
+<div class="highlight"><pre><span></span><code>我们正在研究神经网络中的神经元。每个神经元都在短文档中寻找某些特定的东西。请查看神经元激活的文档部分，并用一句话概括该神经元正在寻找什么。不要列出单词的例子。
+
+激活格式是 token&lt;tab&gt;activation。激活值范围从 0 到 10。神经元找到它正在寻找的东西用非零激活值表示。激活值越高，匹配越强。
+
+---
+**示例 1**
+---
+Neuron 1
+Activations:
+&lt;start&gt;
+the     0
+sense       0
+of      0
+together    3
+ness        7
+in      0
+our     0
+town        1
+is      0
+strong      0
+.       0
+&lt;end&gt;
+
+Activations (过滤掉零值):
+&lt;start&gt;
+together    3
+ness        7
+town        1
+&lt;end&gt;
+
+Explanation of neuron 1 behavior: the main thing this neuron does is find phrases related to community
+
+---
+**示例 2**
+---
+Neuron 4
+Activations:
+&lt;start&gt;
+Esc     0
+aping       9
+the     4
+studio      0
+,       0
+Pic     0
+col     0
+i       0
+is      0
+warmly  0
+affecting   3
+&lt;end&gt;
+
+Activations (过滤掉零值):
+&lt;start&gt;
+aping       9
+the     4
+affecting   3
+&lt;end&gt;
+
+Explanation of neuron 4 behavior: the main thing this neuron does is find ... [此处省略，因为论文中没有给出完整的解释]
+
+---
+**... (重复多个示例)**
+---
+
+**目标神经元**
+---
+Neuron [目标神经元编号]
+Activations:
+&lt;start&gt;
+[token1]&lt;tab&gt;[activation1]
+[token2]&lt;tab&gt;[activation2]
+...
+&lt;end&gt;
+
+Activations (如果稀疏，重复非零激活的token-activation对):
+&lt;start&gt;
+[token_非零1]&lt;tab&gt;[activation_非零1]
+[token_非零2]&lt;tab&gt;[activation_非零2]
+...
+&lt;end&gt;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>我们正在研究神经网络中的神经元。每个神经元都在短文档中寻找某些特定的东西。请查看神经元的功能解释，并尝试预测其在特定token上的激活值。
+
+激活格式是 token&lt;tab&gt;activation，激活值范围从 0 到 10。大多数激活将为 0。
+
+---
+**示例 1**
+---
+Neuron 1
+Explanation of neuron 1 behavior: the main thing this neuron does is find phrases related to community
+Activations:
+&lt;start&gt;
+the     0
+sense       0
+of      0
+together    3
+ness        7
+in      0
+our     0
+town        1
+is      0
+strong      0
+.       0
+&lt;end&gt;
+
+---
+**示例 2**
+---
+Neuron 4
+Explanation of neuron 4 behavior: the main thing this neuron does is find present tense verbs ending in &#39;ing&#39;
+Text: Starting from a position of
+Last token in the text: of
+Last token activation, considering the token in the context in which it appeared in the text:
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>我们正在研究神经网络中的神经元。每个神经元都在短文档中寻找某些特定的东西。请查看神经元的功能解释，并尝试预测它在每个token上的激活值。
+
+激活格式是 token&lt;tab&gt;activation，激活值范围从 0 到 10，&quot;unknown&quot; 表示未知的激活。大多数激活将为 0。
+
+---
+**示例 1**
+---
+Neuron 1
+Explanation of neuron 1 behavior: the main thing this neuron does is find phrases related to community
+Activations:
+&lt;start&gt;
+the     unknown
+sense       unknown
+of      0
+together    3
+ness        7
+in      0
+our     0
+town        1
+is      0
+strong      0
+.       0
+&lt;end&gt;
+
+---
+**示例 2**
+---
+Neuron 4
+Explanation of neuron 4 behavior: the main thing this neuron does is find present tense verbs ending in &#39;ing&#39;
+Activations:
+&lt;start&gt;
+Star        unknown
+ting        unknown
+from        unknown
+a       unknown
+position    unknown
+of      unknown
+strength    unknown
+&lt;end&gt;
+
+---
+**目标神经元**
+---
+Neuron [目标神经元编号]
+Explanation of neuron [目标神经元编号] behavior: [目标神经元行为解释]
+Activations:
+&lt;start&gt;
+[token1]&lt;tab&gt;unknown
+[token2]&lt;tab&gt;unknown
+...
+&lt;end&gt;
+</code></pre></div>
+</details>
+
+<h2 id="fpo">FPO<a class="headerlink" href="#fpo" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DPO的loss</li>
+<li>抽象成一般Loss设计</li>
+<li>TDPO的loss，其中的delta项的设计理由</li>
+<li>约束 SAE特征框定KL散度的上限</li>
+<li>FPO使用SAE特征抽取替代KL散度</li>
+</ul>
+<p>主轴：
+- 规避显示计算KL散度，降低计算开销
+- SAE具有的特征表示性</p>
+<h2 id="tdpo">TDPO的设计<a class="headerlink" href="#tdpo" title="Permanent link">&para;</a></h2>
+<h3 id="_1"><strong>一、优化问题形式化</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><strong>目标函数</strong>：
+$$
+\max_{\pi} \underbrace{\mathbb{E}<em _pi__text_ref="\pi_{\text{ref">{z \sim \pi}\left[ A</em>}}}(s_t, z) \right]<em _text_KL="\text{KL">{\text{优势期望}} - \beta \underbrace{D</em>
+$$
+}}\left( \pi | \pi_{\text{ref}} \right)}_{\text{KL惩罚项}<strong>约束条件</strong>：
+$$
+\sum_z \pi(z|s_t) = 1 \quad \text{且} \quad \pi(z|s_t) \geq 0
+$$</p>
+<hr />
+<h3 id="_2"><strong>二、拉格朗日函数构造</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>引入乘子<span class="arithmatex">\(\lambda\)</span>处理概率归一化约束：
+$$
+\mathcal{L}(\pi, \lambda) = \sum_z \pi(z|s_t) A(s_t,z) - \beta \sum_z \pi(z|s_t) \log\frac{\pi(z|s_t)}{\pi_{\text{ref}}(z|s_t)} + \lambda \left(1 - \sum_z \pi(z|s_t)\right)
+$$
+其中 $ A(s_t,z) \equiv A_{\pi_{\text{ref}}}(s_t,z) $</p>
+<hr />
+<h3 id="_3"><strong>三、极值必要条件</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="1"><strong>1. 对策略变量求导</strong><a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>对每个候选动作<span class="arithmatex">\(z\)</span>，令偏导为零：
+$$
+\frac{\partial \mathcal{L}}{\partial \pi(z|s_t)} = A(s_t,z) - \beta \left( \log\frac{\pi}{\pi_{\text{ref}}} + 1 \right) - \lambda = 0
+$$
+整理得：
+$$
+\log\frac{\pi(z|s_t)}{\pi_{\text{ref}}(z|s_t)} = \frac{A(s_t,z) - \lambda - \beta}{\beta}
+$$
+指数化：
+$$
+\pi(z|s_t) = \pi_{\text{ref}}(z|s_t) \cdot \exp\left( \frac{A(s_t,z)}{\beta} \right) \cdot \exp\left( -\frac{\lambda + \beta}{\beta} \right)
+$$</p>
+<hr />
+<h4 id="2_1"><strong>2. 对乘子求导恢复约束</strong><a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+\frac{\partial \mathcal{L}}{\partial \lambda} = 1 - \sum_z \pi(z|s_t) = 0 \quad \Rightarrow \quad \sum_z \pi(z|s_t) = 1
+\]</div>
+<hr />
+<h3 id="_4"><strong>四、联立方程求解</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="1_1"><strong>1. 通解表达式</strong><a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>将策略表达式改写为：
+$$
+\pi(z|s_t) = \underbrace{\pi_{\text{ref}}(z|s_t) \exp\left( \frac{A(s_t,z)}{\beta} \right)}<em C_s_t_="C(s_t)">{\text{未归一化分布}} \cdot \underbrace{\exp\left( -\frac{\lambda + \beta}{\beta} \right)}</em>
+$$</p>
+<hr />
+<h4 id="2_2"><strong>2. 归一化条件应用</strong><a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h4>
+<p>代入<span class="arithmatex">\(\sum_z \pi(z|s_t) = 1\)</span>：
+$$
+C(s_t) \cdot \sum_z \pi_{\text{ref}}(z|s_t) \exp\left( \frac{A(s_t,z)}{\beta} \right) = 1
+$$
+解得归一化因子：
+$$
+C(s_t) = \frac{1}{\sum_z \pi_{\text{ref}}(z|s_t) \exp\left( \frac{A(s_t,z)}{\beta} \right)} \equiv \frac{1}{Z(s_t;\beta)}
+$$</p>
+<hr />
+<h4 id="3"><strong>3. 最终闭式解</strong><a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+\pi^*(z|s_t) = \frac{\pi_{\text{ref}}(z|s_t) \exp\left( \frac{A_{\pi_{\text{ref}}}(s_t,z)}{\beta} \right)}{Z(s_t;\beta)}
+$$
+其中配分函数：
+$$
+Z(s_t;\beta) = \sum_z \pi_{\text{ref}}(z|s_t) \exp\left( \frac{A_{\pi_{\text{ref}}}(s_t,z)}{\beta} \right)
+\]</div>
+<h3 id="_5"><strong>五、完整推导流程图</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>\begin{array}{ccc}
+\text{原始优化问题} &amp; \xrightarrow{\text{引入拉格朗日乘子}} &amp; \mathcal{L}(\pi,\lambda) \\
+\downarrow &amp; &amp; \downarrow \\
+\text{对}\pi\text{求导} &amp; \xrightarrow{\text{得指数形式通解}} &amp; \text{对}\lambda\text{求导} \\
+&amp; \downarrow &amp; \\
+\text{代入归一化条件} &amp; \xrightarrow{\text{确定配分函数}} &amp; \text{闭式解} \pi^* \\
+&amp; \downarrow &amp; \\
+\text{验证贝尔曼方程} &amp; \xleftarrow{\text{连接Q函数}} &amp; \text{策略优化完成}
+\end{array}
+</code></pre></div>
+<h2 id="_6">实验设计<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>模型</strong></th>
+<th><strong>SFT 阶段（微调数据集）</strong></th>
+<th><strong>SFT 阶段（微调数据集）</strong></th>
+<th><strong>对齐阶段</strong></th>
+<th><strong>评测阶段</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemma-2-2B 和 Gemma-2-9B</td>
+<td>使用 Ultrachat-200K 数据集建立基线对话能力</td>
+<td>使用 Halos 数据集进行微调</td>
+<td>使用 UltraFeedback 数据集进行对齐</td>
+<td>在 MT-Bench、AlpacaEval 2 和 Arena-Hard 上评测</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">超参数设置<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>批量大小</strong>：32</li>
+<li><strong>学习率</strong>：<span class="arithmatex">\(5 \times 10^{-7}\)</span></li>
+<li><strong>预热步骤</strong>：150</li>
+<li><strong>训练轮数</strong>：1</li>
+<li><strong>优化器</strong>：</li>
+<li>Gemma-2-2B 使用 Adam</li>
+<li>Gemma-2-9B 使用 RMSProp</li>
+</ul>
+<h2 id="kl">关于KL散度约束的推导<a class="headerlink" href="#kl" title="Permanent link">&para;</a></h2>
+<h3 id="_8"><strong>一、符号系统明确</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>定义变量</strong>：</li>
+<li>参考logits：<span class="arithmatex">\(z_{\text{ref}} \in \mathbb{R}^V\)</span></li>
+<li>当前logits：<span class="arithmatex">\(z = z_{\text{ref}} + \Delta z\)</span></li>
+<li>概率分布：<span class="arithmatex">\(p_{\text{ref}} = \text{softmax}(z_{\text{ref}})\)</span></li>
+<li>
+<p>当前分布：<span class="arithmatex">\(p = \text{softmax}(z)\)</span></p>
+</li>
+<li>
+<p><strong>KL散度目标</strong>：
+   <span class="arithmatex">\(D_{\text{KL}} = \sum_{i=1}^V p_{\text{ref},i} (\log p_{\text{ref},i} - \log p_i)\)</span></p>
+</li>
+</ol>
+<hr />
+<h3 id="_9"><strong>二、一阶导数计算（梯度）</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h4 id="1_2"><strong>步骤1：展开求和项</strong><a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h4>
+<p>将KL散度展开为：
+<span class="arithmatex">\(D_{\text{KL}} = \underbrace{\sum p_{\text{ref},i} \log p_{\text{ref},i}}_{\text{常数项}} - \sum p_{\text{ref},i} \log p_i\)</span></p>
+<h4 id="2_3"><strong>步骤2：求导目标简化</strong><a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h4>
+<p>只需计算：
+<span class="arithmatex">\(\frac{\partial D_{\text{KL}}}{\partial \Delta z_k} = -\sum_{i=1}^V p_{\text{ref},i} \frac{\partial \log p_i}{\partial \Delta z_k}\)</span></p>
+<h4 id="3_1"><strong>步骤3：链式法则应用</strong><a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<p>对每个<span class="arithmatex">\(\log p_i\)</span>求导：
+<span class="arithmatex">\(\frac{\partial \log p_i}{\partial \Delta z_k} = \frac{1}{p_i} \cdot \frac{\partial p_i}{\partial \Delta z_k}\)</span></p>
+<h4 id="4softmax"><strong>步骤4：softmax导数计算</strong><a class="headerlink" href="#4softmax" title="Permanent link">&para;</a></h4>
+<p>回忆softmax导数公式：
+<span class="arithmatex">\(\frac{\partial p_i}{\partial \Delta z_k} = p_i (\delta_{ik} - p_k)\)</span><br />
+其中，克罗内克δ函数：
+<span class="arithmatex">\(<span class="arithmatex">\(\delta_{ik} = \begin{cases} 1 &amp; \text{if } i=k \\ 0 &amp; \text{if } i \neq k \end{cases}\)</span>\)</span></p>
+<h4 id="5"><strong>步骤5：代入并化简</strong><a class="headerlink" href="#5" title="Permanent link">&para;</a></h4>
+<p>将步骤3和步骤4代入步骤2：
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{\partial D_{\text{KL}}}{\partial \Delta z_k} = -\sum_{i=1}^V p_{\text{ref},i} \cdot \frac{1}{p_i} \cdot p_i (\delta_{ik} - p_k)\)</span>\)</span>
+简化分数项：
+<span class="arithmatex">\(<span class="arithmatex">\(= -\sum_{i=1}^V p_{\text{ref},i} (\delta_{ik} - p_k)\)</span>\)</span>
+展开求和：
+<span class="arithmatex">\(<span class="arithmatex">\(= -\left[ \sum_{i=1}^V p_{\text{ref},i} \delta_{ik} - \sum_{i=1}^V p_{\text{ref},i} p_k \right]\)</span>\)</span>
+第一项由于δ函数性质只剩下<span class="arithmatex">\(p_{\text{ref},k}\)</span>，第二项中<span class="arithmatex">\(p_k\)</span>与<span class="arithmatex">\(i\)</span>无关可提出：
+<span class="arithmatex">\(<span class="arithmatex">\(= -\left[ p_{\text{ref},k} - p_k \sum_{i=1}^V p_{\text{ref},i} \right]\)</span>\)</span>
+因为概率分布求和为1：
+<span class="arithmatex">\(<span class="arithmatex">\(= -(p_{\text{ref},k} - p_k \cdot 1) = p_k - p_{\text{ref},k}\)</span>\)</span></p>
+<hr />
+<h3 id="hessian"><strong>三、二阶导数计算（Hessian矩阵）</strong><a class="headerlink" href="#hessian" title="Permanent link">&para;</a></h3>
+<h4 id="1_3"><strong>步骤1：从一阶导数出发</strong><a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h4>
+<p>已有：
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{\partial D_{\text{KL}}}{\partial \Delta z_k} = p_k - p_{\text{ref},k}\)</span>\)</span>
+现在对<span class="arithmatex">\(\Delta z_j\)</span>求导：
+<span class="arithmatex">\(<span class="arithmatex">\(H_{jk} = \frac{\partial^2 D_{\text{KL}}}{\partial \Delta z_j \partial \Delta z_k} = \frac{\partial p_k}{\partial \Delta z_j}\)</span>\)</span></p>
+<h4 id="2softmax"><strong>步骤2：再次应用softmax导数</strong><a class="headerlink" href="#2softmax" title="Permanent link">&para;</a></h4>
+<p>直接使用softmax导数公式：
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{\partial p_k}{\partial \Delta z_j} = p_k (\delta_{jk} - p_j)\)</span>\)</span>
+在参考点<span class="arithmatex">\(\Delta z=0\)</span>处，此时<span class="arithmatex">\(p_j = p_{\text{ref},j}\)</span>，因此：
+<span class="arithmatex">\(<span class="arithmatex">\(H_{jk} = p_{\text{ref},k} (\delta_{jk} - p_{\text{ref},j})\)</span>\)</span></p>
+<h4 id="3_2"><strong>步骤3：矩阵形式展开</strong><a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h4>
+<p>对于所有元素组合：
+<span class="arithmatex">\(<span class="arithmatex">\(H = \begin{bmatrix}
+p_{\text{ref},1}(1-p_{\text{ref},1}) &amp; -p_{\text{ref},1}p_{\text{ref},2} &amp; \cdots \\
+-p_{\text{ref},2}p_{\text{ref},1} &amp; p_{\text{ref},2}(1-p_{\text{ref},2}) &amp; \cdots \\
+\vdots &amp; \vdots &amp; \ddots
+\end{bmatrix}\)</span>\)</span>
+这等价于：
+<span class="arithmatex">\(<span class="arithmatex">\(H = \text{diag}(p_{\text{ref}}) - p_{\text{ref}} p_{\text{ref}}^\top\)</span>\)</span></p>
+<h2 id="_10">计算复杂度优化分析<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>通过Gemma-2B的具体案例进行量化对比：</p>
+<table>
+<thead>
+<tr>
+<th>计算环节</th>
+<th>传统方法(TDPO)</th>
+<th>FPO(SAE方法)</th>
+<th>优化比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单样本存储空间</td>
+<td><span class="arithmatex">\(2 \times T \times V\)</span></td>
+<td><span class="arithmatex">\(2 \times k\)</span></td>
+<td><span class="arithmatex">\(V/k \approx 26.5\)</span>倍</td>
+</tr>
+<tr>
+<td>矩阵运算量</td>
+<td><span class="arithmatex">\(O(V^2T)\)</span></td>
+<td><span class="arithmatex">\(O(k^2T)\)</span></td>
+<td><span class="arithmatex">\((V/k)^2 \approx 703\)</span>倍</td>
+</tr>
+<tr>
+<td>反向传播内存占用</td>
+<td>~18GB (V=265K)</td>
+<td>~0.68GB (k=10K)</td>
+<td>26.5倍</td>
+</tr>
+<tr>
+<td>特征比对计算量</td>
+<td><span class="arithmatex">\(10^{12}\)</span> FLOPs</td>
+<td><span class="arithmatex">\(10^8\)</span> FLOPs</td>
+<td>4个量级</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">实现效率的关键设计<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Top-k特征筛选</strong><br />
+对稀疏激活<span class="arithmatex">\(c^{(t,\ell)}\)</span>进行：
+<span class="arithmatex">\(<span class="arithmatex">\(I_k = \text{top}_k(\theta) \cup \text{top}_k(\text{ref})\)</span>\)</span><br />
+保留约<span class="arithmatex">\(1.5k\)</span>个有效特征，避免全特征比对。例如当<span class="arithmatex">\(k=10^4\)</span>时，实际计算量仅为<span class="arithmatex">\(1.5\times10^4\)</span>次/样本。</p>
+</li>
+<li>
+<p><strong>层级特征池化</strong><br />
+通过时序平均池化：
+<span class="arithmatex">\(<span class="arithmatex">\(\bar{c}^\ell = \frac{1}{T}\sum_{t=1}^T c^{(t,\ell)}\)</span>\)</span><br />
+将<span class="arithmatex">\(T \times k\)</span>特征压缩为<span class="arithmatex">\(k\)</span>维，使复杂度与序列长度<span class="arithmatex">\(T\)</span>解耦。</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Joining-AI/LLM_Interview_Prepare" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../javascripts/mathjax_config.js"></script>
+      
+    
+  </body>
+</html>

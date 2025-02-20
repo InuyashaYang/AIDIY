@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../MoE_Architecture/">
+        <link rel="prev" href="../Normalization/RMSNorm/">
       
       
-        <link rel="next" href="../../SFT_Pages/SFT/">
+        <link rel="next" href="../Pre-Train/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Llama3架构 - AIDIY Wiki</title>
+        <title>位置编码 Positional Embedding - AIDIY Wiki</title>
       
     
     
@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Llama3架构
+              位置编码 Positional Embedding
             
           </span>
         </div>
@@ -167,7 +172,7 @@
   
     
   
-  Home
+  首页 Home
 
       </a>
     </li>
@@ -184,7 +189,7 @@
         <a href="../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-tabs__link">
           
   
-  Mathematical Foundation
+  数学基础 Mathematical Foundation
 
         </a>
       </li>
@@ -202,7 +207,7 @@
         <a href="../../ML_Pages/CNN/" class="md-tabs__link">
           
   
-  Classic Machine Learning
+  经典机器学习 Classic ML
 
         </a>
       </li>
@@ -218,14 +223,25 @@
   
     
     
+      
+  
+  
+    
+  
+  
+    
+    
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../LLM_Architecture/" class="md-tabs__link">
+        <a href="../LLM_Architecture/LLM_Architecture/" class="md-tabs__link">
           
   
-  LLM Structure
+  大语言模型结构 LLM Structure
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -240,7 +256,7 @@
         <a href="../../SFT_Pages/SFT/" class="md-tabs__link">
           
   
-  SFT
+  指令微调 SFT
 
         </a>
       </li>
@@ -258,7 +274,7 @@
         <a href="../../Engineering_Pages/LlamaFactory/" class="md-tabs__link">
           
   
-  Frame Work
+  框架实践 Framework
 
         </a>
       </li>
@@ -276,7 +292,7 @@
         <a href="../../RLHF_Pages/DPO/" class="md-tabs__link">
           
   
-  RLHF
+  人类反馈强化学习 RLHF
 
         </a>
       </li>
@@ -328,7 +344,7 @@
         
   
   <span class="md-ellipsis">
-    Home
+    首页 Home
   </span>
   
 
@@ -363,7 +379,7 @@
             
   
   <span class="md-ellipsis">
-    Mathematical Foundation
+    数学基础 Mathematical Foundation
   </span>
   
 
@@ -373,7 +389,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Mathematical Foundation
+            数学基础 Mathematical Foundation
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -388,7 +404,7 @@
         
   
   <span class="md-ellipsis">
-    矩阵满秩分解
+    矩阵满秩分解 Full Rank Decomposition
   </span>
   
 
@@ -409,7 +425,7 @@
         
   
   <span class="md-ellipsis">
-    矩阵求导
+    矩阵求导 Matrix Calculation
   </span>
   
 
@@ -430,7 +446,7 @@
         
   
   <span class="md-ellipsis">
-    流形假设
+    流形假设 Manifold Hypothesis
   </span>
   
 
@@ -473,7 +489,7 @@
             
   
   <span class="md-ellipsis">
-    Classic Machine Learning
+    经典机器学习 Classic ML
   </span>
   
 
@@ -483,7 +499,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Classic Machine Learning
+            经典机器学习 Classic ML
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -498,7 +514,7 @@
         
   
   <span class="md-ellipsis">
-    CNN
+    卷积神经网络 CNN
   </span>
   
 
@@ -519,7 +535,7 @@
         
   
   <span class="md-ellipsis">
-    MLP
+    多层感知机 MLP
   </span>
   
 
@@ -540,7 +556,7 @@
         
   
   <span class="md-ellipsis">
-    RNN
+    循环神经网络 RNN
   </span>
   
 
@@ -561,7 +577,7 @@
         
   
   <span class="md-ellipsis">
-    VAE
+    变分自编码器 VAE
   </span>
   
 
@@ -582,7 +598,7 @@
         
   
   <span class="md-ellipsis">
-    Exercise_CNN
+    CNN编程练习 CNN Practice
   </span>
   
 
@@ -603,7 +619,7 @@
         
   
   <span class="md-ellipsis">
-    Exercise_MLP
+    MLP编程练习 MLP Practice
   </span>
   
 
@@ -624,7 +640,7 @@
         
   
   <span class="md-ellipsis">
-    Exercise_RNN
+    RNN编程练习 RNN Practice
   </span>
   
 
@@ -645,7 +661,7 @@
         
   
   <span class="md-ellipsis">
-    Exercise_VAE
+    VAE编程练习 VAE Practice
   </span>
   
 
@@ -693,7 +709,7 @@
             
   
   <span class="md-ellipsis">
-    LLM Structure
+    大语言模型结构 LLM Structure
   </span>
   
 
@@ -703,7 +719,50 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            LLM Structure
+            大语言模型结构 LLM Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Transformer架构 Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Transformer架构 Architecture
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -714,11 +773,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../LLM_Architecture/" class="md-nav__link">
+      <a href="../LLM_Architecture/LLM_Architecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Transformer经典架构
+    Transformer经典架构 Classical Architecture
   </span>
   
 
@@ -735,15 +794,378 @@
   
   
     <li class="md-nav__item">
-      <a href="../Position_Embedding/" class="md-nav__link">
+      <a href="../LLM_Architecture/Llama3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    位置编码
+    Llama3架构 Llama3
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    归一化 Normalization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            归一化 Normalization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Normalization/LayerNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    层归一化 LayerNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Normalization/BatchNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    批归一化 BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Normalization/RMSNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    均方根归一化 RMSNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    位置编码 Positional Embedding
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    位置编码 Positional Embedding
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 位置编码的要求
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 位置编码的要求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 位置向量之间的运算
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 位置向量之间的运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      解释
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 位置编码方法比较
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 位置编码方法比较">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-sinusoidal-position-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 绝对位置编码（Sinusoidal Position Encoding）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 绝对位置编码（Sinusoidal Position Encoding）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 相对位置表示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rope-rotary-position-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 RoPE (Rotary Position Embedding)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 RoPE (Rotary Position Embedding)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 相对位置表示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-alibi-attention-with-linear-biases" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 ALiBi (Attention with Linear Biases)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 ALiBi (Attention with Linear Biases)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2 注意力计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.3 关键特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 比较分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 位置编码方法在大型语言模型中的应用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -760,7 +1182,7 @@
         
   
   <span class="md-ellipsis">
-    预训练阶段
+    预训练阶段 Pre-Train
   </span>
   
 
@@ -781,7 +1203,7 @@
         
   
   <span class="md-ellipsis">
-    后训练阶段
+    后训练阶段 Post-Train
   </span>
   
 
@@ -802,7 +1224,7 @@
         
   
   <span class="md-ellipsis">
-    MoE数学架构
+    MoE数学架构 Mathematics
   </span>
   
 
@@ -816,26 +1238,18 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Llama3.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Llama3架构
+    Llama3架构 Architecture
   </span>
   
 
       </a>
-      
     </li>
   
 
@@ -874,7 +1288,7 @@
             
   
   <span class="md-ellipsis">
-    SFT
+    指令微调 SFT
   </span>
   
 
@@ -884,7 +1298,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            SFT
+            指令微调 SFT
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -899,7 +1313,7 @@
         
   
   <span class="md-ellipsis">
-    SFT
+    监督微调 SFT
   </span>
   
 
@@ -920,7 +1334,7 @@
         
   
   <span class="md-ellipsis">
-    Lora
+    低秩适应 Lora
   </span>
   
 
@@ -963,7 +1377,7 @@
             
   
   <span class="md-ellipsis">
-    Frame Work
+    框架实践 Framework
   </span>
   
 
@@ -973,7 +1387,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Frame Work
+            框架实践 Framework
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -988,7 +1402,7 @@
         
   
   <span class="md-ellipsis">
-    LlamaFactory入门
+    LlamaFactory入门 Introduction
   </span>
   
 
@@ -1009,7 +1423,7 @@
         
   
   <span class="md-ellipsis">
-    全量微调
+    全量微调 Full SFT
   </span>
   
 
@@ -1030,7 +1444,7 @@
         
   
   <span class="md-ellipsis">
-    Pytorch Tensor
+    Pytorch张量 Tensor
   </span>
   
 
@@ -1051,7 +1465,7 @@
         
   
   <span class="md-ellipsis">
-    Pytorch Autograd
+    Pytorch自动微分 Autograd
   </span>
   
 
@@ -1072,7 +1486,7 @@
         
   
   <span class="md-ellipsis">
-    Pytorch load Data
+    Pytorch数据加载 Data Loading
   </span>
   
 
@@ -1093,7 +1507,7 @@
         
   
   <span class="md-ellipsis">
-    Pytorch train Model
+    Pytorch模型训练 Model Training
   </span>
   
 
@@ -1136,7 +1550,7 @@
             
   
   <span class="md-ellipsis">
-    RLHF
+    人类反馈强化学习 RLHF
   </span>
   
 
@@ -1146,7 +1560,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            RLHF
+            人类反馈强化学习 RLHF
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1161,7 +1575,7 @@
         
   
   <span class="md-ellipsis">
-    DPO
+    直接偏好优化 DPO
   </span>
   
 
@@ -1182,7 +1596,7 @@
         
   
   <span class="md-ellipsis">
-    DPO_Exercice
+    DPO编程练习 DPO Practice
   </span>
   
 
@@ -1203,7 +1617,7 @@
         
   
   <span class="md-ellipsis">
-    DPO_Problem
+    DPO问题分析 Problems
   </span>
   
 
@@ -1224,7 +1638,7 @@
         
   
   <span class="md-ellipsis">
-    DPO_Math
+    DPO数学原理 Mathematics
   </span>
   
 
@@ -1245,7 +1659,7 @@
         
   
   <span class="md-ellipsis">
-    PPO
+    近端策略优化 PPO
   </span>
   
 
@@ -1266,7 +1680,7 @@
         
   
   <span class="md-ellipsis">
-    PPO_Loss
+    PPO损失函数 Loss
   </span>
   
 
@@ -1287,7 +1701,7 @@
         
   
   <span class="md-ellipsis">
-    RM_Full_FT_or_Lora
+    奖励模型训练方式 RM Training
   </span>
   
 
@@ -1308,7 +1722,7 @@
         
   
   <span class="md-ellipsis">
-    RM_Training
+    奖励模型训练 RM Training
   </span>
   
 
@@ -1329,7 +1743,7 @@
         
   
   <span class="md-ellipsis">
-    GRPO
+    群组相对策略优化 GRPO
   </span>
   
 
@@ -1350,7 +1764,7 @@
         
   
   <span class="md-ellipsis">
-    MCTS_DPO
+    蒙特卡洛树DPO MCTS-DPO
   </span>
   
 
@@ -1371,7 +1785,7 @@
         
   
   <span class="md-ellipsis">
-    KTO
+    KL约束优化 KTO
   </span>
   
 
@@ -1392,7 +1806,7 @@
         
   
   <span class="md-ellipsis">
-    SimPO
+    简单偏好优化 SimPO
   </span>
   
 
@@ -1413,7 +1827,7 @@
         
   
   <span class="md-ellipsis">
-    SimPO_Exercice
+    SimPO编程练习 SimPO Practice
   </span>
   
 
@@ -1434,7 +1848,7 @@
         
   
   <span class="md-ellipsis">
-    RM_Exercise
+    奖励模型练习 RM Practice
   </span>
   
 
@@ -1455,7 +1869,28 @@
         
   
   <span class="md-ellipsis">
-    NPO
+    负偏好优化 NPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RLHF_Pages/FPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征偏好优化 FPO
   </span>
   
 
@@ -1489,6 +1924,196 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 位置编码的要求
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 位置编码的要求">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 位置向量之间的运算
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 位置向量之间的运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      解释
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 位置编码方法比较
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 位置编码方法比较">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-sinusoidal-position-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 绝对位置编码（Sinusoidal Position Encoding）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 绝对位置编码（Sinusoidal Position Encoding）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 相对位置表示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rope-rotary-position-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 RoPE (Rotary Position Embedding)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 RoPE (Rotary Position Embedding)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 相对位置表示
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-alibi-attention-with-linear-biases" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 ALiBi (Attention with Linear Biases)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 ALiBi (Attention with Linear Biases)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1 定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2 注意力计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.3 关键特性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 比较分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 位置编码方法在大型语言模型中的应用
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1503,9 +2128,389 @@
                   
 
 
-  <h1>Llama3架构</h1>
-
-
+<p><a href="https://github.com/InuyashaYang/JoinAI"><img alt="GitHub stars" src="https://img.shields.io/github/stars/InuyashaYang/JoinAI?style=social" /></a></p>
+<h1 id="_1">位置编码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 位置编码的要求<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>位置编码在序列模型中扮演着至关重要的角色。一个理想的位置编码应满足以下要求：</p>
+<table>
+<thead>
+<tr>
+<th>性质</th>
+<th>描述</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>唯一性</td>
+<td>每个位置输出一个唯一的编码</td>
+<td>使模型能够区分和定位序列中的每个元素</td>
+</tr>
+<tr>
+<td>外推性</td>
+<td>具备良好的外推能力，可处理未见过的位置</td>
+<td>允许模型处理变长序列和超出训练范围的位置</td>
+</tr>
+<tr>
+<td>相对位置表示</td>
+<td>两位置之间的差异性只和其相对位置k有关</td>
+<td>使模型能学习位置无关的模式和关系</td>
+</tr>
+<tr>
+<td>距离相关性</td>
+<td>相对位置k差越大，两位置之关联越弱</td>
+<td>反映了语言的局部性原理，近距离词通常关系更密切</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11">1.1 位置向量之间的运算<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>我们定义 <span class="arithmatex">\(f(i, j)\)</span> 为位置 <span class="arithmatex">\(i\)</span> 和位置 <span class="arithmatex">\(j\)</span> 之间的注意力交互函数：</p>
+<p><span class="arithmatex">\(f(i, j) = ((x_i + p_i)W_q)^T ((x_j + p_j)W_k)\)</span></p>
+<p>其中：
+- <span class="arithmatex">\(x_i\)</span>, <span class="arithmatex">\(x_j\)</span> 是词向量
+- <span class="arithmatex">\(p_i\)</span>, <span class="arithmatex">\(p_j\)</span> 是位置编码
+- <span class="arithmatex">\(W_q\)</span>, <span class="arithmatex">\(W_k\)</span> 是权重矩阵</p>
+<p>展开 <span class="arithmatex">\(f(i, j)\)</span>：</p>
+<p><span class="arithmatex">\(f(i, j) = (x_i W_q + p_i W_q)^T (x_j W_k + p_j W_k)\)</span></p>
+<p><span class="arithmatex">\(\quad\;\; = (x_i W_q)^T (x_j W_k) + (x_i W_q)^T (p_j W_k) + (p_i W_q)^T (x_j W_k) + (p_i W_q)^T (p_j W_k)\)</span></p>
+<p><span class="arithmatex">\(\quad\;\; = x_i^T W_q^T W_k x_j + x_i^T W_q^T W_k p_j + p_i^T W_q^T W_k x_j + p_i^T W_q^T W_k p_j\)</span></p>
+<h4 id="_2">解释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>完全展开后的 <span class="arithmatex">\(f(i, j)\)</span> 包含四个项：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">项</th>
+<th style="text-align: center;">数学表达式</th>
+<th style="text-align: center;">名称</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="arithmatex">\(x_i^T W_q^T W_k x_j\)</span></td>
+<td style="text-align: center;">纯词向量交互</td>
+<td style="text-align: left;">捕捉位置 <span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(j\)</span> 的词向量之间的语义关系</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="arithmatex">\(x_i^T W_q^T W_k p_j\)</span></td>
+<td style="text-align: center;">词向量-位置编码交互</td>
+<td style="text-align: left;">允许模型考虑位置 <span class="arithmatex">\(i\)</span> 的词与位置 <span class="arithmatex">\(j\)</span> 的相对位置关系</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="arithmatex">\(p_i^T W_q^T W_k x_j\)</span></td>
+<td style="text-align: center;">位置编码-词向量交互</td>
+<td style="text-align: left;">考虑位置 <span class="arithmatex">\(i\)</span> 相对于位置 <span class="arithmatex">\(j\)</span> 的词的影响</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="arithmatex">\(p_i^T W_q^T W_k p_j\)</span></td>
+<td style="text-align: center;">纯位置编码交互</td>
+<td style="text-align: left;">捕捉两个位置之间的纯粹相对位置关系</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 位置编码方法比较<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21-sinusoidal-position-encoding">2.1 绝对位置编码（Sinusoidal Position Encoding）<a class="headerlink" href="#21-sinusoidal-position-encoding" title="Permanent link">&para;</a></h3>
+<h4 id="211">2.1.1 定义<a class="headerlink" href="#211" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(pos\)</span></td>
+<td>位置索引</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(i\)</span></td>
+<td>维度索引</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(d_{model}\)</span></td>
+<td>模型维度</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>编码类型</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>偶数维度</td>
+<td><span class="arithmatex">\(PE_{(pos,2i)} = \sin(pos / 10000^{2i/d_{model}})\)</span></td>
+</tr>
+<tr>
+<td>奇数维度</td>
+<td><span class="arithmatex">\(PE_{(pos,2i+1)} = \cos(pos / 10000^{2i/d_{model}})\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="212">2.1.2 相对位置表示<a class="headerlink" href="#212" title="Permanent link">&para;</a></h4>
+<p>对于每对 <span class="arithmatex">\((2i, 2i+1)\)</span> 维度：</p>
+<p><span class="arithmatex">\(\begin{bmatrix} 
+PE_{(pos+k, 2i)} \\
+PE_{(pos+k, 2i+1)}
+\end{bmatrix} = 
+\begin{bmatrix} 
+\cos(k\omega_i) &amp; -\sin(k\omega_i) \\
+\sin(k\omega_i) &amp; \cos(k\omega_i)
+\end{bmatrix}
+\begin{bmatrix} 
+PE_{(pos, 2i)} \\
+PE_{(pos, 2i+1)}
+\end{bmatrix}\)</span></p>
+<p>其中 <span class="arithmatex">\(\omega_i = 1/10000^{2i/d_{model}}\)</span></p>
+<h3 id="22-rope-rotary-position-embedding">2.2 RoPE (Rotary Position Embedding)<a class="headerlink" href="#22-rope-rotary-position-embedding" title="Permanent link">&para;</a></h3>
+<h4 id="221">2.2.1 定义<a class="headerlink" href="#221" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(m\)</span></td>
+<td>位置索引</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(i\)</span></td>
+<td>维度索引</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(d\)</span></td>
+<td>模型维度</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\theta_i\)</span></td>
+<td><span class="arithmatex">\(10000^{-2i/d}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>向量</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\mathbf{q}_m\)</span></td>
+<td><span class="arithmatex">\([q_0, q_1, ..., q_{d-1}]\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathbf{k}_m\)</span></td>
+<td><span class="arithmatex">\([k_0, k_1, ..., k_{d-1}]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>RoPE 操作：</p>
+<p><span class="arithmatex">\(R_{\Theta,m}(\mathbf{q}_m)_i = [q_i \cos(m\theta_i) - q_{i+1} \sin(m\theta_i), q_i \sin(m\theta_i) + q_{i+1} \cos(m\theta_i)]\)</span></p>
+<h4 id="222">2.2.2 相对位置表示<a class="headerlink" href="#222" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(\langle R_{\Theta,m}(\mathbf{q}), R_{\Theta,n}(\mathbf{k}) \rangle = f(\mathbf{q}, \mathbf{k}, n-m)\)</span></p>
+<h3 id="23-alibi-attention-with-linear-biases">2.3 ALiBi (Attention with Linear Biases)<a class="headerlink" href="#23-alibi-attention-with-linear-biases" title="Permanent link">&para;</a></h3>
+<p>ALiBi 通过在注意力分数中添加线性偏置来编码位置信息，实际上替换了传统注意力计算中的位置编码相关项。</p>
+<h4 id="231">2.3.1 定义<a class="headerlink" href="#231" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(q\)</span></td>
+<td>查询向量</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k\)</span></td>
+<td>键向量</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(i, j\)</span></td>
+<td>查询和键的位置索引</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(m\)</span></td>
+<td>预定义斜率</td>
+</tr>
+</tbody>
+</table>
+<h4 id="232">2.3.2 注意力计算<a class="headerlink" href="#232" title="Permanent link">&para;</a></h4>
+<p>ALiBi 修改了传统的注意力计算方式。对比传统方法和 ALiBi：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>注意力分数计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传统方法</td>
+<td><span class="arithmatex">\(a(q, k) = (x_i W_q)^T (x_j W_k) + (x_i W_q)^T (p_j W_k) + (p_i W_q)^T (x_j W_k) + (p_i W_q)^T (p_j W_k)\)</span></td>
+</tr>
+<tr>
+<td>ALiBi</td>
+<td>$ a(q, k) = q^T k - m ×\text{abs}(i-j) $</td>
+</tr>
+</tbody>
+</table>
+<p>其中，ALiBi 的 <span class="arithmatex">\(q^T k\)</span> 对应传统方法中的 <span class="arithmatex">\(x_i^T W_q^T W_k x_j\)</span>（纯词向量交互），而 <span class="arithmatex">\(- m|i-j|\)</span> 项替代了传统方法中的其他三项（词向量-位置编码交互、位置编码-词向量交互和纯位置编码交互）。</p>
+<h4 id="233">2.3.3 关键特性<a class="headerlink" href="#233" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>简化计算</strong>：ALiBi 通过一个简单的线性项替代了复杂的位置编码交互。</li>
+<li><strong>直接编码相对位置</strong>：<span class="arithmatex">\(|i-j|\)</span> 项直接表示了查询和键之间的相对距离。</li>
+<li><strong>消除显式位置编码</strong>：不再需要为输入序列添加单独的位置编码。</li>
+</ol>
+<p>这种方法有效地将位置信息整合到注意力机制中，同时简化了计算过程。通过替换传统注意力计算中的位置编码相关项，ALiBi 提供了一种更直接、更高效的方式来处理序列中的位置信息。</p>
+<h3 id="24">2.4 比较分析<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sinusoidal</td>
+<td>可以处理任意长度序列；具有良好的数学性质</td>
+<td>可能难以捕捉非常长的依赖关系</td>
+</tr>
+<tr>
+<td>RoPE</td>
+<td>自然地表示相对位置；计算效率高</td>
+<td>实现相对复杂</td>
+</tr>
+<tr>
+<td>ALiBi</td>
+<td>简单有效；易于实现和理解</td>
+<td>可能不适合某些需要复杂位置关系的任务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 位置编码方法在大型语言模型中的应用<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>位置编码方法</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-2</td>
+<td>学习的绝对位置嵌入</td>
+<td>每个位置都有一个可学习的嵌入向量</td>
+</tr>
+<tr>
+<td>GPT-3</td>
+<td>学习的绝对位置嵌入</td>
+<td>与 GPT-2 类似，但扩展到更长的序列</td>
+</tr>
+<tr>
+<td>BERT</td>
+<td>学习的绝对位置嵌入</td>
+<td>类似于 GPT-2，但用于双向注意力</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>相对位置编码</td>
+<td>使用相对位置偏置而不是绝对位置</td>
+</tr>
+<tr>
+<td>XLNet</td>
+<td>相对位置编码</td>
+<td>使用双向相对位置编码</td>
+</tr>
+<tr>
+<td>ALBERT</td>
+<td>学习的绝对位置嵌入</td>
+<td>与 BERT 类似</td>
+</tr>
+<tr>
+<td>RoBERTa</td>
+<td>学习的绝对位置嵌入</td>
+<td>与 BERT 类似，但移除了位置嵌入的可学习性</td>
+</tr>
+<tr>
+<td>DeBERTa</td>
+<td>相对位置编码</td>
+<td>使用解耦的注意力机制</td>
+</tr>
+<tr>
+<td>PaLM</td>
+<td>RoPE (Rotary Position Embedding)</td>
+<td>使用旋转位置编码</td>
+</tr>
+<tr>
+<td>LLaMA</td>
+<td>RoPE (Rotary Position Embedding)</td>
+<td>使用旋转位置编码</td>
+</tr>
+<tr>
+<td>BLOOM</td>
+<td>ALiBi (Attention with Linear Biases)</td>
+<td>使用线性偏置注意力</td>
+</tr>
+<tr>
+<td>ERNIE 3.0</td>
+<td>相对位置编码</td>
+<td>使用相对位置表示</td>
+</tr>
+<tr>
+<td>Falcon</td>
+<td>ALiBi (Attention with Linear Biases)</td>
+<td>使用线性偏置注意力</td>
+</tr>
+<tr>
+<td>Vicuna</td>
+<td>RoPE (Rotary Position Embedding)</td>
+<td>基于 LLaMA，使用旋转位置编码</td>
+</tr>
+<tr>
+<td>Alpaca</td>
+<td>RoPE (Rotary Position Embedding)</td>
+<td>基于 LLaMA，使用旋转位置编码</td>
+</tr>
+<tr>
+<td>BART</td>
+<td>学习的绝对位置嵌入</td>
+<td>类似于 BERT，用于序列到序列任务</td>
+</tr>
+</tbody>
+</table>
+<script src="https://giscus.app/client.js"
+        data-repo="InuyashaYang/AIDIY"
+        data-repo-id="R_kgDOM1VVTQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM1VVTc4Ckls_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
 
 
 

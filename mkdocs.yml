@@ -46,8 +46,14 @@ nav:
     - RNN编程练习 RNN Practice: ML_Pages/Pytorch_RNN.md
     - VAE编程练习 VAE Practice: ML_Pages/Pytorch_VAE.md
   - 大语言模型结构 LLM Structure:
-    - Transformer经典架构 Architecture: LLM_Pages/LLM_Architecture.md
-    - 位置编码 Position Embedding: LLM_Pages/Position_Embedding.md
+    - Transformer架构 Architecture:
+      - Transformer经典架构 Classical Architecture: LLM_Pages/LLM_Architecture/LLM_Architecture.md
+      - Llama3架构 Llama3: LLM_Pages/LLM_Architecture/Llama3.md
+    - 归一化 Normalization: 
+      - 层归一化 LayerNorm: LLM_Pages/Normalization/LayerNorm.md
+      - 批归一化 BatchNorm: LLM_Pages/Normalization/BatchNorm.md
+      - 均方根归一化 RMSNorm: LLM_Pages/Normalization/RMSNorm.md
+    - 位置编码 Positional Embedding: LLM_Pages/Positional_Embedding.md
     - 预训练阶段 Pre-Train: LLM_Pages/Pre-Train.md
     - 后训练阶段 Post-Train: LLM_Pages/Post-Train.md
     - MoE数学架构 Mathematics: LLM_Pages/MoE_Architecture.md
@@ -78,6 +84,7 @@ nav:
     - SimPO编程练习 SimPO Practice: RLHF_Pages/SimPO_Exercise.md
     - 奖励模型练习 RM Practice: RLHF_Pages/RM_Exercise.md
     - 负偏好优化 NPO: RLHF_Pages/NPO.md
+    - 特征偏好优化 FPO: RLHF_Pages/FPO.md
 
 extra:
   social:

@@ -1,0 +1,2095 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+    
+    
+      
+        <title>LayerNorm Exercise - AIDIY Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-rmsnorm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AIDIY Wiki" class="md-header__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AIDIY Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LayerNorm Exercise
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-tabs__link">
+          
+  
+  数学基础 Mathematical Foundation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ML_Pages/CNN/" class="md-tabs__link">
+          
+  
+  经典机器学习 Classic ML
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LLM_Architecture/LLM_Architecture/" class="md-tabs__link">
+          
+  
+  大语言模型结构 LLM Structure
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SFT_Pages/SFT/" class="md-tabs__link">
+          
+  
+  指令微调 SFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Engineering_Pages/LlamaFactory/" class="md-tabs__link">
+          
+  
+  框架实践 Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RLHF_Pages/DPO/" class="md-tabs__link">
+          
+  
+  人类反馈强化学习 RLHF
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AIDIY Wiki" class="md-nav__button md-logo" aria-label="AIDIY Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AIDIY Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页 Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数学基础 Mathematical Foundation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            数学基础 Mathematical Foundation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Mathematical_Foundation/Linear_Algebra/Matrix_Decomposition/Full_Rank_Decomposition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵满秩分解 Full Rank Decomposition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Mathematical_Foundation/Linear_Algebra/Matrix_Calculation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵求导 Matrix Calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Mathematical_Foundation/Manifold/Manifold_hypothesis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    流形假设 Manifold Hypothesis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    经典机器学习 Classic ML
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            经典机器学习 Classic ML
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积神经网络 CNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/MLP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多层感知机 MLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    循环神经网络 RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/VAE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    变分自编码器 VAE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/Pytorch_CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CNN编程练习 CNN Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/Pytorch_MLP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLP编程练习 MLP Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/Pytorch_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN编程练习 RNN Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ML_Pages/Pytorch_VAE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VAE编程练习 VAE Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    大语言模型结构 LLM Structure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            大语言模型结构 LLM Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Transformer架构 Architecture
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Transformer架构 Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Architecture/LLM_Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformer经典架构 Classical Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM_Architecture/Llama3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llama3架构 Llama3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    归一化 Normalization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            归一化 Normalization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LayerNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    层归一化 LayerNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BatchNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    批归一化 BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RMSNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    均方根归一化 RMSNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Positional_Embedding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    位置编码 Positional Embedding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Pre-Train/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练阶段 Pre-Train
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Post-Train/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后训练阶段 Post-Train
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MoE_Architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MoE数学架构 Mathematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Llama3.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llama3架构 Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    指令微调 SFT
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            指令微调 SFT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SFT_Pages/SFT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    监督微调 SFT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SFT_Pages/Lora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    低秩适应 Lora
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    框架实践 Framework
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            框架实践 Framework
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Engineering_Pages/LlamaFactory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LlamaFactory入门 Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Engineering_Pages/Full_SFT_LlamaFactory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全量微调 Full SFT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Engineering_Pages/Pytorch/Basic_1_Tensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch张量 Tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Engineering_Pages/Pytorch/Basic_2_Autograd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch自动微分 Autograd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Engineering_Pages/Pytorch/How_to_Load_Data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch数据加载 Data Loading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Engineering_Pages/Pytorch/How_to_Train_Model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pytorch模型训练 Model Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    人类反馈强化学习 RLHF
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            人类反馈强化学习 RLHF
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/DPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    直接偏好优化 DPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/DPO_Exercise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DPO编程练习 DPO Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/DPO_Problem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DPO问题分析 Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/DPO_Math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DPO数学原理 Mathematics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/PPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    近端策略优化 PPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/PPO_Loss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PPO损失函数 Loss
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/RM_Full_FT_or_Lora/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奖励模型训练方式 RM Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/RM_Training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奖励模型训练 RM Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/GRPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    群组相对策略优化 GRPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/MCTS_DPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    蒙特卡洛树DPO MCTS-DPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/KTO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL约束优化 KTO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/SimPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简单偏好优化 SimPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/SimPO_Exercise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SimPO编程练习 SimPO Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/RM_Exercise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奖励模型练习 RM Practice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/NPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    负偏好优化 NPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RLHF_Pages/FPO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征偏好优化 FPO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习题 1: RMSNorm 的定义与基本概念
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习题 2: 手动计算 RMSNorm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习题 3: RMSNorm 与其他归一化方法的比较
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习题 4: RMSNorm 的优缺点分析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      练习题 5: RMSNorm 的实际应用场景
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>LayerNorm Exercise</h1>
+
+<h3 id="1-rmsnorm">练习题 1: RMSNorm 的定义与基本概念<a class="headerlink" href="#1-rmsnorm" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong></p>
+<p>请定义均方根归一化（RMSNorm），并说明其与层归一化（LayerNorm）和批归一化（BatchNorm）在归一化方法上的主要区别。</p>
+<details>
+<summary>提示</summary>
+
+**定义：**
+
+均方根归一化（RMSNorm）是一种用于规范化神经网络层输入的方法。它通过计算输入向量的均方根（Root Mean Square, RMS）值，并利用该值对输入进行缩放，从而实现归一化。与LayerNorm和BatchNorm类似，RMSNorm旨在加速训练过程、提高模型稳定性和泛化能力。
+
+**主要区别：**
+
+- **与BatchNorm的区别：**
+  - **归一化维度：** BatchNorm在批次维度和特征维度上进行归一化，而RMSNorm仅在特征维度上进行归一化。
+  - **依赖批次大小：** BatchNorm依赖于较大的批次大小以准确估计统计量，RMSNorm不依赖批次大小，适用于小批次训练。
+  - **适用场景：** BatchNorm适用于卷积神经网络等需要大批次的任务，RMSNorm更适合序列模型或需要小批次的任务。
+
+- **与LayerNorm的区别：**
+  - **计算内容：** LayerNorm计算输入的均值和方差进行归一化，而RMSNorm仅计算均方根值，省略了均值的计算。
+  - **计算复杂度：** 由于省略了均值的计算，RMSNorm在计算上略显简化，可能具有更高的计算效率。
+  - **信息保留：** LayerNorm保留了输入的中心化信息，而RMSNorm可能会丢失部分关于输入分布的位置信息。
+
+</details>
+
+<hr />
+<h3 id="2-rmsnorm">练习题 2: 手动计算 RMSNorm<a class="headerlink" href="#2-rmsnorm" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong></p>
+<p>给定以下输入向量和参数，手动计算其 RMSNorm 后的输出。</p>
+<ul>
+<li>输入向量：<span class="arithmatex">\(\mathbf{x} = [3.0, -3.0, 6.0]\)</span></li>
+<li>缩放参数：<span class="arithmatex">\(\gamma = 2.0\)</span></li>
+<li>平移参数：<span class="arithmatex">\(\beta = -1.0\)</span></li>
+<li>稳定常数：<span class="arithmatex">\(\epsilon = 1 \times 10^{-6}\)</span></li>
+</ul>
+<p>计算归一化后的输出向量 <span class="arithmatex">\(\mathbf{y}\)</span>。</p>
+<details>
+<summary>提示</summary>
+
+**步骤 1：计算均方根（RMS）值**
+
+$$
+\text{RMS} = \sqrt{ \frac{1}{H} \sum_{i=1}^{H} x_i^2 } = \sqrt{ \frac{3.0^2 + (-3.0)^2 + 6.0^2}{3} } = \sqrt{ \frac{9 + 9 + 36}{3} } = \sqrt{ \frac{54}{3} } = \sqrt{18} \approx 4.2426
+$$
+
+**步骤 2：归一化**
+
+$$
+\hat{x}_i = \frac{x_i}{\text{RMS} + \epsilon} \approx \frac{x_i}{4.2426}
+$$
+
+计算各元素：
+
+$$
+\begin{align*}
+\hat{x}_1 &= \frac{3.0}{4.2426} \approx 0.7071 \\
+\hat{x}_2 &= \frac{-3.0}{4.2426} \approx -0.7071 \\
+\hat{x}_3 &= \frac{6.0}{4.2426} \approx 1.4142 \\
+\end{align*}
+$$
+
+**步骤 3：应用缩放和平移**
+
+$$
+y_i = \gamma \cdot \hat{x}_i + \beta
+$$
+
+计算各元素：
+
+$$
+\begin{align*}
+y_1 &= 2.0 \times 0.7071 + (-1.0) \approx 1.4142 - 1.0 = 0.4142 \\
+y_2 &= 2.0 \times (-0.7071) + (-1.0) \approx -1.4142 - 1.0 = -2.4142 \\
+y_3 &= 2.0 \times 1.4142 + (-1.0) \approx 2.8284 - 1.0 = 1.8284 \\
+\end{align*}
+$$
+
+**最终输出向量：**
+
+$$
+\mathbf{y} \approx [0.4142, -2.4142, 1.8284]
+$$
+
+</details>
+
+<hr />
+<h3 id="3-rmsnorm">练习题 3: RMSNorm 与其他归一化方法的比较<a class="headerlink" href="#3-rmsnorm" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong></p>
+<p>请比较均方根归一化（RMSNorm）、层归一化（LayerNorm）和批归一化（BatchNorm）在以下几个方面的区别：</p>
+<p>a) 归一化维度<br />
+b) 对批次大小的依赖性<br />
+c) 适用的场景</p>
+<details>
+<summary>提示</summary>
+
+**a) 归一化维度：**
+
+- **BatchNorm：** 在批次维度和特征维度上进行归一化。
+- **LayerNorm：** 仅在特征维度上进行归一化。
+- **RMSNorm：** 仅在特征维度上进行归一化。
+
+**b) 对批次大小的依赖性：**
+
+- **BatchNorm：** 依赖于较大的批次大小以准确估计均值和方差，批次较小时表现不佳。
+- **LayerNorm：** 不依赖于批次大小，适用于任意批次大小。
+- **RMSNorm：** 不依赖于批次大小，适用于任意批次大小。
+
+**c) 适用的场景：**
+
+- **BatchNorm：** 适用于卷积神经网络等需要大批次的任务，如图像分类。
+- **LayerNorm：** 适用于序列模型，如RNN和Transformer，以及需要处理变长输入的任务。
+- **RMSNorm：** 适用于序列模型和小批次训练，尤其在计算资源有限或批次大小受限的情况下。
+
+</details>
+
+<hr />
+<h3 id="4-rmsnorm">练习题 4: RMSNorm 的优缺点分析<a class="headerlink" href="#4-rmsnorm" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong></p>
+<p>请列举均方根归一化（RMSNorm）在深度学习模型中的三个主要优点和两个主要缺点，并简要解释每一点。</p>
+<details>
+<summary>提示</summary>
+
+**优点：**
+
+1. **计算效率高：**  
+   由于RMSNorm省略了均值的计算，仅计算均方根值，减少了计算量，尤其在高维度数据中更为高效。
+
+2. **不依赖批次大小：**  
+   类似于LayerNorm，RMSNorm不依赖于批次大小，适用于小批次训练和序列模型，特别是在资源受限的情况下表现良好。
+
+3. **提升训练稳定性：**  
+   通过规范化输入向量的尺度，RMSNorm有助于减小内部协变量偏移，提高模型训练的稳定性和收敛速度。
+
+**缺点：**
+
+1. **信息损失：**  
+   RMSNorm省略了均值的计算，可能会丢失输入分布的中心化信息，这在某些任务中可能影响模型的表达能力。
+
+2. **性能提升有限：**  
+   在某些应用场景中，尤其是均值信息对任务重要时，RMSNorm相较于LayerNorm或BatchNorm的性能提升可能不明显，甚至可能略逊一筹。
+
+</details>
+
+<hr />
+<h3 id="5-rmsnorm">练习题 5: RMSNorm 的实际应用场景<a class="headerlink" href="#5-rmsnorm" title="Permanent link">&para;</a></h3>
+<p><strong>问题：</strong></p>
+<p>在以下两个任务中，讨论为何选择使用均方根归一化（RMSNorm）而不是批归一化（BatchNorm）或层归一化（LayerNorm）：</p>
+<p>a) 自然语言处理中的Transformer模型<br />
+b) 图像分类任务，且使用较小的批次大小（如16）</p>
+<p>请分别解释原因。</p>
+<details>
+<summary>提示</summary>
+
+**a) 自然语言处理中的Transformer模型：**
+
+- **小批次训练适应性：** Transformer模型常用于自然语言处理任务，通常使用较小的批次大小。BatchNorm在小批次下表现不佳，因为统计量的估计不稳定，而RMSNorm不依赖于批次大小，能够在小批次甚至单样本情况下稳定工作。
+
+- **序列数据的特性：** Transformer处理的是序列数据，每个时间步的输入可能存在相关性。BatchNorm的批次维度归一化可能引入不必要的依赖，而RMSNorm仅在特征维度上进行归一化，更符合序列数据的特性。
+
+**b) 图像分类任务，且使用较小的批次大小（如16）：**
+
+- **批次大小限制：** 图像分类任务有时因内存限制或模型复杂度需要使用较小的批次大小。BatchNorm在小批次下可能表现不佳，因为统计量的估计不稳定。RMSNorm不依赖于批次维度，能够在小批次下保持稳定的归一化效果。
+
+- **替代LayerNorm的选择：** 尽管LayerNorm也不依赖于批次大小，但在视觉任务中，BatchNorm通常表现更好。然而，在批次大小受限的情况下，RMSNorm提供了一种更高效的归一化替代方案，结合了LayerNorm的独立性和更低的计算复杂度。
+
+</details>
+
+<p><strong>问题：</strong></p>
+<p>给定以下输入矩阵 <span class="arithmatex">\(X\)</span>，其中每一行代表一个样本：</p>
+<div class="arithmatex">\[
+X = \begin{bmatrix}
+5.0 &amp; 10.0 &amp; 15.0 \\
+-5.0 &amp; -10.0 &amp; -15.0
+\end{bmatrix}
+\]</div>
+<p>缩放参数 <span class="arithmatex">\(\gamma = 2\)</span>，平移参数 <span class="arithmatex">\(\beta = 1\)</span>，且 <span class="arithmatex">\(\epsilon = 1 \times 10^{-5}\)</span>。</p>
+<p>计算应用层归一化（LayerNorm）后的输出矩阵 <span class="arithmatex">\(Y\)</span>。</p>
+<details>
+<summary>提示</summary>
+
+**步骤 1: 计算每个样本的均值 ($\mu$)**
+
+对于第一个样本 $[5.0, 10.0, 15.0]$：
+
+$$
+\mu_1 = \frac{5.0 + 10.0 + 15.0}{3} = 10.0
+$$
+
+对于第二个样本 $[-5.0, -10.0, -15.0]$：
+
+$$
+\mu_2 = \frac{-5.0 + (-10.0) + (-15.0)}{3} = -10.0
+$$
+
+**步骤 2: 计算每个样本的方差 ($\sigma^2$)**
+
+对于第一个样本：
+
+$$
+\sigma^2_1 = \frac{(5.0 - 10.0)^2 + (10.0 - 10.0)^2 + (15.0 - 10.0)^2}{3} = \frac{25 + 0 + 25}{3} \approx 16.\overline{6}
+$$
+
+对于第二个样本：
+
+$$
+\sigma^2_2 = \frac{(-5.0 - (-10.0))^2 + (-10.0 - (-10.0))^2 + (-15.0 - (-10.0))^2}{3} = \frac{25 + 0 + 25}{3} \approx 16.\overline{6}
+$$
+
+**步骤 3: 计算标准差 ($\sigma$)**
+
+$$
+\sigma_1 = \sqrt{\sigma^2_1 + \epsilon} \approx \sqrt{16.\overline{6} + 1 \times 10^{-5}} \approx 4.0825
+$$
+
+$$
+\sigma_2 = \sqrt{\sigma^2_2 + \epsilon} \approx \sqrt{16.\overline{6} + 1 \times 10^{-5}} \approx 4.0825
+$$
+
+**步骤 4: 进行归一化**
+
+对于第一个样本：
+
+$$
+\hat{x}_{11} = \frac{5.0 - 10.0}{4.0825} \approx -1.225
+$$
+
+$$
+\hat{x}_{12} = \frac{10.0 - 10.0}{4.0825} \approx 0.0
+$$
+
+$$
+\hat{x}_{13} = \frac{15.0 - 10.0}{4.0825} \approx 1.225
+$$
+
+对于第二个样本：
+
+$$
+\hat{x}_{21} = \frac{-5.0 - (-10.0)}{4.0825} \approx 1.225
+$$
+
+$$
+\hat{x}_{22} = \frac{-10.0 - (-10.0)}{4.0825} \approx 0.0
+$$
+
+$$
+\hat{x}_{23} = \frac{-15.0 - (-10.0)}{4.0825} \approx -1.225
+$$
+
+**步骤 5: 应用缩放和平移**
+
+$$
+y_{ij} = \gamma \cdot \hat{x}_{ij} + \beta = 2 \cdot \hat{x}_{ij} + 1
+$$
+
+因此，最终输出矩阵 $Y$ 为：
+
+$$
+Y = \begin{bmatrix}
+2 \cdot (-1.225) + 1 & 2 \cdot 0.0 + 1 & 2 \cdot 1.225 + 1 \\
+2 \cdot 1.225 + 1 & 2 \cdot 0.0 + 1 & 2 \cdot (-1.225) + 1
+\end{bmatrix} \approx \begin{bmatrix}
+-1.45 & 1 & 3.45 \\
+3.45 & 1 & -1.45
+\end{bmatrix}
+$$
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Joining-AI/LLM_Interview_Prepare" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="../../../javascripts/mathjax_config.js"></script>
+      
+    
+  </body>
+</html>
