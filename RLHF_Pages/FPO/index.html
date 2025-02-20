@@ -2527,12 +2527,14 @@
 </tbody>
 </table>
 <h4 id="12">1.2 通用优化目标<a class="headerlink" href="#12" title="Permanent link">&para;</a></h4>
-<p>$$
-\min_{\theta,\phi} \underbrace{\mathbb{E}<em data="data">{x \sim p</em> + \lambda R(\theta,\phi)
-$$
-- }} \left[ | x - g_\phi(f_\theta(x)) |^2 \right]}_{\text{重构损失}<span class="arithmatex">\(\theta = \{W, b\}\)</span>：编码器参数<br />
-- <span class="arithmatex">\(\phi = \{W', b'\}\)</span>：解码器参数<br />
-- <span class="arithmatex">\(R(\cdot)\)</span>：正则化项</p>
+<div class="arithmatex">\[
+\min_{\theta,\phi} \underbrace{\mathbb{E}_{x \sim p_{data}} \left[ \| x - g_\phi(f_\theta(x)) \|^2 \right]}_{\text{重构损失}} + \lambda R(\theta,\phi)
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\theta = \{W, b\}\)</span>：编码器参数  </li>
+<li><span class="arithmatex">\(\phi = \{W', b'\}\)</span>：解码器参数  </li>
+<li><span class="arithmatex">\(R(\cdot)\)</span>：正则化项</li>
+</ul>
 <hr />
 <h3 id="2"><strong>2. 变体架构对比</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <table>
@@ -2551,14 +2553,9 @@ $$
 <td><span class="arithmatex">\(R = \|W\|_F^2 + \|W'\|_F^2 + \beta \Omega(h)\)</span></td>
 <td>分类任务特征学习</td>
 </tr>
-<tr>
-<td>---</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<hr />
 <summary>SAE的特征抽取</summary>
 
 <details>
