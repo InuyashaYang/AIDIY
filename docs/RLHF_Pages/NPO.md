@@ -110,9 +110,9 @@ $$
   
   其中 $C_3$ 出现在对数函数内部也是一个常数。
 
-<iframe src="NPO.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="NPO Interactive Content">
+<iframe src="NPO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="NPO Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="NPO.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="NPO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 <script src="https://giscus.app/client.js"

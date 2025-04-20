@@ -231,9 +231,9 @@ GRPO 通过构建一个最小-最大优化的损失函数，结合加权梯度�
 3. **梯度优化**：通过精心设计的损失函数和梯度更新机制，确保策略参数向着最优方向快速收敛。
 4. **理论保障**：在一定的假设条件下（如损失函数的凸性和 Lipschitz 连续性），GRPO 的优化过程能够保证以 $\mathcal{O}(T^{-1/2})$ 的速率收敛到最优解。
 
-<iframe src="GRPO.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="GRPO Interactive Content">
+<iframe src="GRPO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="GRPO Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="GRPO.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="GRPO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 
