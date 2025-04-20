@@ -106,6 +106,12 @@
 在**大批量数据（通常超过100,000个样本）**下，尤其是在**资源充足、任务复杂**的奖励建模（RM）任务中，**全量微调** 通过 **全面调整模型参数、提升泛化能力** 以及 **更好地捕捉复杂奖励结构**，展现出显著优势。虽然全量微调的计算开销较高，但在大数据量和高性能需求下，其提升的模型表现往往值得这些额外的资源投入。
 
 
+
+<iframe src="RM_Full_FT_or_Lora.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="RM Full FT or Lora Interactive Content">
+    您的浏览器不支持 iframe，无法加载交互式内容。
+    请 <a href="RM_Full_FT_or_Lora.html" target="_blank">点击这里在新窗口中查看</a>。
+</iframe>
+
 <script src="https://giscus.app/client.js"
         data-repo="InuyashaYang/AIDIY"
         data-repo-id="R_kgDOM1VVTQ"

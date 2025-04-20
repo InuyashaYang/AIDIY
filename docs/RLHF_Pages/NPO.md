@@ -109,3 +109,24 @@ $$
   $$
   
   其中 $C_3$ 出现在对数函数内部也是一个常数。
+
+<iframe src="NPO.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="NPO Interactive Content">
+    您的浏览器不支持 iframe，无法加载交互式内容。
+    请 <a href="NPO.html" target="_blank">点击这里在新窗口中查看</a>。
+</iframe>
+
+<script src="https://giscus.app/client.js"
+        data-repo="InuyashaYang/AIDIY"
+        data-repo-id="R_kgDOM1VVTQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOM1VVTc4Ckls_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>

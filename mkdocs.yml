@@ -48,7 +48,7 @@ nav:
   - 大语言模型结构 LLM Structure:
     - Transformer架构 Architecture:
       - Transformer经典架构 Classical Architecture: LLM_Pages/LLM_Architecture/LLM_Architecture.md
-      - Llama3架构 Llama3: LLM_Pages/LLM_Architecture/Llama3.md
+
     - 归一化 Normalization: 
       - 层归一化 LayerNorm: LLM_Pages/Normalization/LayerNorm.md
       - 批归一化 BatchNorm: LLM_Pages/Normalization/BatchNorm.md
@@ -68,7 +68,6 @@ nav:
     - Pytorch自动微分 Autograd: Engineering_Pages/Pytorch/Basic_2_Autograd.md
     - Pytorch数据加载 Data Loading: Engineering_Pages/Pytorch/How_to_Load_Data.md
     - Pytorch模型训练 Model Training: Engineering_Pages/Pytorch/How_to_Train_Model.md
-    - Transformers_Lens————从指定层中抽取隐藏层向量:Engineering_Pages/Transformer_Lens/Extract_hidden_layer.md
   - 人类反馈强化学习 RLHF: 
     - 直接偏好优化 DPO: RLHF_Pages/DPO.md
     - DPO编程练习 DPO Practice: RLHF_Pages/DPO_Exercise.md

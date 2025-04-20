@@ -322,6 +322,12 @@ $$
 </details>
 
 
+
+<iframe src="SimPO_Exercise.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="SimPO Exercise Interactive Content">
+    您的浏览器不支持 iframe，无法加载交互式内容。
+    请 <a href="SimPO_Exercise.html" target="_blank">点击这里在新窗口中查看</a>。
+</iframe>
+
 <script src="https://giscus.app/client.js"
         data-repo="InuyashaYang/AIDIY"
         data-repo-id="R_kgDOM1VVTQ"
