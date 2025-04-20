@@ -151,9 +151,9 @@ $$
 | **参考点处理**      | 通过对数概率比定义                     | 显式引入效用参考点 $z_0$，基于批次内不匹配对 |
 
 
-<iframe src="KTO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="KTO Interactive Content">
+<iframe src="/AIDIY/RLHF_Pages/KTO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="KTO Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="KTO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="/AIDIY/RLHF_Pages/KTO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 <script src="https://giscus.app/client.js"

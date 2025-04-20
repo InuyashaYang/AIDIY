@@ -79,9 +79,9 @@ $\mathcal{L}(\theta) = \prod_{n=1}^{N} P(y_b^n \mid x_n; \theta)$
 等价于最小化负对数似然：
 $-\log \mathcal{L}(\theta) = -\sum_{n=1}^{N} \log P(y_b^n \mid x_n; \theta)$
 
-<iframe src="PPO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="PPO Interactive Content">
+<iframe src="/AIDIY/RLHF_Pages/PPO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="PPO Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="PPO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="/AIDIY/RLHF_Pages/PPO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 

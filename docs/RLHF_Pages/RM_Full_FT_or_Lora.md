@@ -107,9 +107,9 @@
 
 
 
-<iframe src="RM_Full_FT_or_Lora_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="RM Full FT or Lora Interactive Content">
+<iframe src="/AIDIY/RLHF_Pages/RM_Full_FT_or_Lora_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="RM Full FT or Lora Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="RM_Full_FT_or_Lora_viz.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="/AIDIY/RLHF_Pages/RM_Full_FT_or_Lora_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 <script src="https://giscus.app/client.js"

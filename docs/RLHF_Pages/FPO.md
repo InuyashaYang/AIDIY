@@ -543,9 +543,9 @@ $$\bar{c}^\ell = \frac{1}{T}\sum_{t=1}^T c^{(t,\ell)}$$
 
 将$T \times k$特征压缩为$k$维，使复杂度与序列长度$T$解耦。
 
-<iframe src="FPO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="FPO Interactive Content">
+<iframe src="/AIDIY/RLHF_Pages/FPO_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="FPO Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="FPO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="/AIDIY/RLHF_Pages/FPO_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 <script src="https://giscus.app/client.js"
