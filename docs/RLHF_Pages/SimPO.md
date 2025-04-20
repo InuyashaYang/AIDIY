@@ -26,6 +26,850 @@ $\mathcal{L}_\text{SimPO} = (r(x,y_w,y_l) - \beta)^2$
 4. 训练过程都只更新policy model参数
 
 SimPO是DPO的一个更简单的替代方案，特别适合在计算资源有限或需要更稳定训练过程的场景。
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点和边信息</title>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+        }
+        svg {
+            flex: 1;
+            display: block;
+        }
+        .node circle {
+            stroke: #fff;
+            stroke-width: 1.5px;
+        }
+        .edge {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+        text {
+            font-size: 11px;
+            pointer-events: none;
+        }
+        #sidebar {
+            width: 300px;
+            height: 100%;
+            background-color: #f0f0f0;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            position: fixed;
+            top: 0;
+            right: 0;
+            transform: translateX(100%);
+        }
+        #sidebar.show {
+            transform: translateX(0);
+        }
+        #toggleSidebar, #reset {
+            position: absolute;
+            top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 100;
+            border-radius: 4px;
+        }
+        #toggleSidebar {
+            right: 10px;
+        }
+        #reset {
+            right: 130px;
+        }
+        .selected-node {
+            fill: gold;
+            stroke: #fff;
+            stroke-width: 1.5px;
+        }
+        .neighbor-missing-node {
+            fill: green;
+        }
+    </style>
+</head>
+<body>
+    <svg id="canvas"></svg>
+    <div id="sidebar">
+        <h2 id="sidebar-title">节点信息</h2>
+        <div id="sidebar-content">
+            <p>点击一个节点查看详细信息</p>
+            <h3>定义</h3>
+            <p id="definition"></p>
+            <h3>适用场景</h3>
+            <p id="applicable_scenarios"></p>
+            <h3>核心思想</h3>
+            <p id="core_idea"></p>
+            <h3>优势特点</h3>
+            <ul id="advantages"></ul>
+            <h3>局限性</h3>
+            <ul id="limitations"></ul>
+            <h3>应用领域</h3>
+            <p id="application_fields"></p>
+            <h3>关键组件</h3>
+            <ul id="key_components"></ul>
+            <h3>相关模型/算法</h3>
+            <ul id="related_models"></ul>
+            <h3>关系</h3>
+            <ul id="relations"></ul>
+        </div>
+    </div>
+    <button id="toggleSidebar">隐藏信息</button>
+    <button id="reset">重置视图</button>
+
+    <!-- 加载 D3.js 和主脚本 -->
+    <script>
+        /**
+         * 尝试加载 D3.js 的函数
+         * @param {Array} urls - D3.js 的多个 CDN 源
+         * @param {Function} callback - D3.js 成功加载后的回调函数
+         */
+        function loadD3(urls, callback) {
+            console.log("尝试加载 D3.js...");
+            // 如果 D3.js 已经加载，直接执行回调
+            if (typeof d3 !== 'undefined') {
+                console.log("D3.js 已经加载。");
+                callback();
+                return;
+            }
+
+            // 如果没有更多的 URL 进行尝试，显示错误信息
+            if (urls.length === 0) {
+                console.error('所有CDN源都加载失败！');
+                alert('无法加载D3.js，请检查网络连接或联系管理员。');
+                return;
+            }
+
+            const currentUrl = urls[0];
+            console.log(`尝试从 ${currentUrl} 加载 D3.js`);
+            const script = document.createElement('script');
+            script.src = currentUrl;
+            script.onload = function() {
+                if (typeof d3 !== 'undefined') {
+                    console.log('D3.js 成功从:', currentUrl, '加载！');
+                    callback();
+                } else {
+                    console.warn('D3.js 未定义，从', currentUrl, '加载失败，尝试下一个CDN源...');
+                    loadD3(urls.slice(1), callback);
+                }
+            };
+            script.onerror = function() {
+                console.warn('加载失败:', currentUrl, '，尝试下一个CDN源...');
+                loadD3(urls.slice(1), callback);
+            };
+            document.head.appendChild(script);
+        }
+
+        // 定义多个CDN源，并将本地文件作为最后的备选
+        const d3Urls = [
+            'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js',
+            'https://unpkg.com/d3@7/dist/d3.min.js',
+            'https://d3js.org/d3.v7.min.js',
+            'd3.min.js' // 本地文件
+        ];
+
+        /**
+         * 在 D3.js 加载完成后执行的主函数
+         */
+         function main() {
+            console.log("D3.js 已加载，执行主函数。");
+            try {
+                // 嵌入实体和关系数据，确保使用 tojson 和 safe 过滤器
+                const entities = {
+    "MSE": {
+        "模型/算法名称": "MSE",
+        "定义": "均方误差损失函数,用于衡量预测值与目标值差异",
+        "适用场景": "回归任务和模型优化",
+        "核心思想": "最小化预测值与目标值之间的平方误差",
+        "优势特点": "计算简单,训练稳定,易于优化",
+        "局限性": "对异常值敏感,可能导致梯度爆炸",
+        "应用领域": "机器学习,深度学习,统计建模",
+        "关键组件": "平方误差计算,均值处理"
+    },
+    "自回归式": {
+        "模型/算法名称": "自回归式",
+        "定义": "通过序列中先前元素预测下一个元素的模型",
+        "适用场景": "序列生成任务如文本生成",
+        "核心思想": "利用历史信息逐步预测未来输出",
+        "优势特点": "简单直观,易于并行化训练",
+        "局限性": "长距离依赖捕捉能力有限",
+        "应用领域": "自然语言处理,时间序列预测",
+        "关键组件": "注意力机制,位置编码"
+    },
+    "DPO": {
+        "模型/算法名称": "DPO",
+        "定义": "一种基于偏好优化的强化学习算法",
+        "适用场景": "需要偏好学习的序列生成任务",
+        "核心思想": "通过最大化偏好序列的对数概率优化策略",
+        "优势特点": "无需显式奖励函数,自回归式计算",
+        "局限性": "计算复杂度较高,训练稳定性较差",
+        "应用领域": "自然语言生成,对话系统",
+        "关键组件": "参考模型,策略模型,偏好分数"
+    },
+    "Mean Squared Error": {
+        "模型/算法名称": "Mean Squared Error",
+        "定义": "衡量预测值与目标值差异的平方平均",
+        "适用场景": "回归问题,模型优化",
+        "核心思想": "最小化预测误差的平方和",
+        "优势特点": "计算简单,导数容易求解",
+        "局限性": "对异常值敏感,可能导致过拟合",
+        "应用领域": "机器学习,统计建模",
+        "关键组件": "平方误差,平均值计算"
+    },
+    "交叉熵": {
+        "模型/算法名称": "交叉熵",
+        "定义": "衡量两个概率分布之间差异的损失函数",
+        "适用场景": "分类任务和偏好学习",
+        "核心思想": "最小化预测分布与真实分布的差异",
+        "优势特点": "梯度更新稳定,适合概率输出",
+        "局限性": "数值计算可能不稳定",
+        "应用领域": "机器学习,深度学习",
+        "关键组件": "对数计算,概率分布"
+    },
+    "奖励函数": {
+        "模型/算法名称": "奖励函数",
+        "定义": "用于评估生成序列偏好得分的函数",
+        "适用场景": "强化学习中的偏好优化任务",
+        "核心思想": "通过比较正负样本得分优化策略",
+        "优势特点": "计算简单,训练稳定,可调偏好强度",
+        "局限性": "依赖参考模型,需预设目标值",
+        "应用领域": "语言模型微调,对话系统优化",
+        "关键组件": "参考模型,策略模型,目标值"
+    },
+    "SimPO": {
+        "模型/算法名称": "SimPO",
+        "定义": "使用均方误差损失优化偏好分数的强化学习算法",
+        "适用场景": "计算资源有限或需要稳定训练的场景",
+        "核心思想": "通过MSE损失使偏好分数接近目标值",
+        "优势特点": "计算简单,训练稳定,可调节偏好强度",
+        "局限性": "未提及具体局限性",
+        "应用领域": "偏好学习与策略优化",
+        "关键组件": "参考模型,均方误差损失,超参数β"
+    }
+};  // 使用特殊占位符
+                const relations = {
+    "0": {
+        "出发节点": "SimPO",
+        "到达节点": "自回归式",
+        "关系名称": "实现方式关系",
+        "关系解释": "SimPO采用自回归式方法计算序列概率,这是其实现偏好分数计算的基础方式",
+        "关系强度": 8
+    },
+    "1": {
+        "出发节点": "SimPO",
+        "到达节点": "MSE",
+        "关系名称": "组件关系",
+        "关系解释": "SimPO直接采用均方误差(MSE)作为其损失函数的核心计算组件",
+        "关系强度": 8
+    },
+    "2": {
+        "出发节点": "奖励函数",
+        "到达节点": "Mean Squared Error",
+        "关系名称": "优化关系",
+        "关系解释": "Mean Squared Error被用作优化目标,使得奖励函数的输出接近预设的目标值β",
+        "关系强度": 8
+    },
+    "3": {
+        "出发节点": "奖励函数",
+        "到达节点": "自回归式",
+        "关系名称": "依赖关系",
+        "关系解释": "自回归式序列概率计算依赖于奖励函数提供的偏好分数作为优化目标",
+        "关系强度": 8
+    },
+    "4": {
+        "出发节点": "交叉熵",
+        "到达节点": "Mean Squared Error",
+        "关系名称": "替代关系",
+        "关系解释": "在SimPO中,Mean Squared Error被用作交叉熵的替代方案,以简化计算并提高训练稳定性",
+        "关系强度": 7
+    },
+    "5": {
+        "出发节点": "Direct Preference Optimization (DPO)",
+        "到达节点": "Simple Preference Optimization (SimPO)",
+        "关系名称": "简化替代关系",
+        "关系解释": "SimPO通过使用均方误差损失函数替代DPO的交叉熵损失函数,提供了计算更简单、训练更稳定的替代方案,同时保留了DPO的核心特性",
+        "关系强度": 8
+    },
+    "6": {
+        "出发节点": "MSE",
+        "到达节点": "Mean Squared Error",
+        "关系名称": "缩写全称关系",
+        "关系解释": "MSE是Mean Squared Error的缩写形式,两者指代相同的损失函数概念",
+        "关系强度": 10
+    },
+    "7": {
+        "出发节点": "奖励函数",
+        "到达节点": "交叉熵",
+        "关系名称": "优化关系",
+        "关系解释": "在DPO中,交叉熵被用来优化奖励函数的偏好分数,使其更符合人类偏好",
+        "关系强度": 8
+    },
+    "8": {
+        "出发节点": "SimPO",
+        "到达节点": "Mean Squared Error",
+        "关系名称": "组件关系",
+        "关系解释": "SimPO直接采用Mean Squared Error作为其损失函数的核心计算组件,用于衡量模型预测偏好分数与目标值β之间的差异",
+        "关系强度": 10
+    },
+    "9": {
+        "出发节点": "奖励函数",
+        "到达节点": "SimPO",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO通过直接优化偏好分数与目标值的均方误差,替代了传统基于显式奖励函数的方法",
+        "关系强度": 8
+    },
+    "10": {
+        "出发节点": "DPO",
+        "到达节点": "自回归式",
+        "关系名称": "依赖关系",
+        "关系解释": "DPO的计算过程依赖于自回归式生成序列概率的方法,这是两者共同的核心计算基础",
+        "关系强度": 8
+    },
+    "11": {
+        "出发节点": "Direct Preference Optimization (DPO)",
+        "到达节点": "Mean Squared Error (MSE)",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO使用Mean Squared Error作为损失函数替代了Direct Preference Optimization中的交叉熵损失函数,旨在简化计算并提高训练稳定性",
+        "关系强度": 8
+    },
+    "12": {
+        "出发节点": "自回归式",
+        "到达节点": "交叉熵",
+        "关系名称": "计算依赖关系",
+        "关系解释": "在DPO方法中,交叉熵损失函数的计算依赖于自回归式生成的序列概率作为输入",
+        "关系强度": 8
+    },
+    "13": {
+        "出发节点": "奖励函数",
+        "到达节点": "均方误差损失函数",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO使用均方误差损失函数直接优化奖励分数与目标值的差距,替代了DPO中基于奖励函数差值计算概率的间接优化方式",
+        "关系强度": 8
+    },
+    "14": {
+        "出发节点": "DPO",
+        "到达节点": "奖励函数",
+        "关系名称": "隐式替代关系",
+        "关系解释": "DPO通过策略模型和参考模型的对数概率比隐式地替代了显式奖励函数的设计需求",
+        "关系强度": 8
+    },
+    "15": {
+        "出发节点": "SimPO",
+        "到达节点": "交叉熵",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO使用均方误差损失函数替代了DPO中的交叉熵损失函数,旨在简化计算并提高训练稳定性",
+        "关系强度": 8
+    },
+    "16": {
+        "出发节点": "自回归式",
+        "到达节点": "Mean Squared Error",
+        "关系名称": "优化关系",
+        "关系解释": "自回归式模型通过Mean Squared Error优化偏好分数的计算,使其更接近目标值",
+        "关系强度": 8
+    },
+    "17": {
+        "出发节点": "Mean Squared Error",
+        "到达节点": "Cross-Entropy",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO使用Mean Squared Error作为更简单和稳定的替代方案,取代了DPO中的Cross-Entropy损失函数",
+        "关系强度": 8
+    },
+    "18": {
+        "出发节点": "Direct Preference Optimization (DPO)",
+        "到达节点": "Cross-Entropy Loss",
+        "关系名称": "特化关系",
+        "关系解释": "DPO的损失函数是基于交叉熵损失的特化形式,通过将偏好优化问题转化为二元分类任务,使用sigmoid激活后的对数概率差作为输入",
+        "关系强度": 8
+    },
+    "19": {
+        "出发节点": "交叉熵",
+        "到达节点": "直接偏好优化",
+        "关系名称": "基础关系",
+        "关系解释": "直接偏好优化的损失函数基于交叉熵构建,通过sigmoid变换和对数计算实现偏好学习",
+        "关系强度": 8
+    },
+    "20": {
+        "出发节点": "Mean Squared Error",
+        "到达节点": "Direct Preference Optimization",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO使用Mean Squared Error作为损失函数替代了Direct Preference Optimization中的交叉熵损失函数,旨在简化计算并提高训练稳定性",
+        "关系强度": 8
+    },
+    "21": {
+        "出发节点": "SimPO",
+        "到达节点": "DPO",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO通过使用更简单的MSE损失函数和引入目标值β,提供了对DPO的替代方案,特别适合在计算资源有限或需要更稳定训练过程的场景",
+        "关系强度": 8
+    },
+    "22": {
+        "出发节点": "交叉熵",
+        "到达节点": "均方误差",
+        "关系名称": "替代关系",
+        "关系解释": "在SimPO方法中,均方误差被用作交叉熵的替代损失函数,旨在简化计算并提高训练稳定性",
+        "关系强度": 7
+    },
+    "23": {
+        "出发节点": "Mean Squared Error",
+        "到达节点": "DPO",
+        "关系名称": "替代关系",
+        "关系解释": "SimPO使用Mean Squared Error作为损失函数,替代了DPO中的交叉熵损失函数,旨在简化计算并提高训练稳定性",
+        "关系强度": 7
+    },
+    "24": {
+        "出发节点": "奖励函数",
+        "到达节点": "直接偏好优化(DPO)",
+        "关系名称": "替代关系",
+        "关系解释": "直接偏好优化(DPO)通过隐式地利用奖励函数(通过策略模型和参考模型的对数概率比计算)替代了显式的奖励函数设计,从而简化了偏好学习的流程.",
+        "关系强度": 8
+    }
+};  // 使用特殊占位符
+
+                console.log("实体数据:", entities);
+                console.log("关系数据:", relations);
+
+                // 转换 entities_dict 为 nodes，使用模型/算法名称作为 id
+                const nodes = Object.values(entities).map((entity, index) => ({
+                    id: entity["模型/算法名称"],
+                    name: entity["模型/算法名称"],
+                    definition: entity["定义"],
+                    applicable_scenarios: entity["适用场景"],
+                    core_idea: entity["核心思想"],
+                    advantages: entity["优势特点"],
+                    limitations: entity["局限性"] ,
+                    application_fields: entity["应用领域"],
+                    key_components: entity["关键组件"],
+                    related_models: entity["相关模型/算法"],
+                    color: d3.schemeCategory10[index % 10]
+                }));
+                console.log("生成的节点数据:", nodes);
+
+
+                // 根据实体名称查找节点 ID
+                function findNodeId(name) {
+                    const node = nodes.find(n => n.id === name);
+                    if (!node) {
+                        console.warn(`未找到名称为 "${name}" 的节点。`);
+                    }
+                    return node ? node.id : null;
+                }
+
+                // 转换 relations_dict 为 links
+                const links = Object.values(relations).map(relation => ({
+                    source: findNodeId(relation["出发节点"]),
+                    target: findNodeId(relation["到达节点"]),
+                    relationship_type: relation["关系类型"],
+                    relationship_explanation: relation["关系说明"],
+                    relationship_strength: parseInt(relation["相关度"])
+                })).filter(link => {
+                    const valid = link.source !== null && link.target !== null;
+                    if (!valid) {
+                        console.warn("过滤掉无效的链接:", link);
+                    }
+                    return valid;
+                });
+                console.log("生成的链接数据:", links);
+
+                // 识别连通性和聚类
+                function findClusters(nodes, links) {
+                    const clusters = [];
+                    const visited = new Set();
+
+                    function dfs(node, cluster) {
+                        if (!node) {
+                            console.error('未找到节点:', node);
+                            return;
+                        }
+                        visited.add(node.id);
+                        cluster.push(node);
+                        links.forEach(link => {
+                            if (link.source === node.id && !visited.has(link.target)) {
+                                const targetNode = nodes.find(n => n.id === link.target);
+                                if (targetNode) {
+                                    dfs(targetNode, cluster);
+                                }
+                            } else if (link.target === node.id && !visited.has(link.source)) {
+                                const sourceNode = nodes.find(n => n.id === link.source);
+                                if (sourceNode) {
+                                    dfs(sourceNode, cluster);
+                                }
+                            }
+                        });
+                    }
+
+                    nodes.forEach(node => {
+                        if (!visited.has(node.id)) {
+                            const cluster = [];
+                            console.log(`开始处理节点 "${node.id}" 的聚类。`);
+                            dfs(node, cluster);
+                            clusters.push(cluster);
+                            console.log(`完成一个聚类，包含节点:`, cluster.map(n => n.id));
+                        }
+                    });
+
+                    console.log("识别出的所有聚类:", clusters);
+                    return clusters;
+                }
+
+                // 识别团簇并为其上色
+                function colorClusters(nodes, links) {
+                    console.log("开始识别和上色聚类。");
+                    const clusters = findClusters(nodes, links);
+                    const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+                    clusters.forEach((cluster, clusterIndex) => {
+                        cluster.forEach(node => {
+                            node.cluster = clusterIndex;
+                            node.color = color(clusterIndex);
+                        });
+                    });
+                    console.log("聚类及颜色设置完成。");
+                }
+
+                // 识别团簇并上色
+                colorClusters(nodes, links);
+
+                // 创建深拷贝的原始数据
+                let originalNodes = JSON.parse(JSON.stringify(nodes));
+                let originalLinks = JSON.parse(JSON.stringify(links));
+                console.log("创建原始数据的深拷贝。");
+
+                let selectedNodeId = null; // 记录选中的节点 ID
+
+                // 创建 SVG 和力导向仿真
+                const width = window.innerWidth; 
+                const height = window.innerHeight;
+                console.log(`创建 SVG，宽度: ${width}, 高度: ${height}`);
+                const svgSelection = d3.select("#canvas")
+                    .attr("width", width)
+                    .attr("height", height);
+                    
+                const svgGroup = svgSelection.append("g"); // 创建一个组元素用于缩放
+                console.log("添加组元素到 SVG。");
+
+                svgSelection.call(d3.zoom() // 添加缩放和拖拽功能
+                    .on("zoom", (event) => {
+                        svgGroup.attr("transform", event.transform);
+                        console.log("缩放事件触发，transform:", event.transform);
+                    }))
+                    .on("dblclick.zoom", null); // 禁用双击缩放
+                console.log("添加缩放和拖拽功能。");
+
+                const simulation = d3.forceSimulation(nodes)
+                    .force("link", d3.forceLink(links).id(d => d.id).distance(150)) // 调整距离
+                    .force("charge", d3.forceManyBody().strength(-30)) // 调整力的强度
+                    .force("center", d3.forceCenter(width / 2, height / 2));
+                console.log("初始化力导向仿真。");
+
+                // 绘制边
+                let link = svgGroup.append("g")
+                    .attr("class", "links")
+                    .selectAll("line")
+                    .data(links)
+                    .enter().append("line")
+                    .attr("class", "edge")
+                    .attr("stroke-width", d => Math.sqrt(d.relationship_strength));
+                console.log("绘制边完成。");
+
+                // 绘制节点
+                let node = svgGroup.append("g")
+                    .attr("class", "nodes")
+                    .selectAll("g")
+                    .data(nodes)
+                    .enter().append("g")
+                    .attr("class", "node")
+                    .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended));
+                console.log("绘制节点组完成。");
+
+                node.append("circle")
+                    .attr("r", 10)
+                    .attr("fill", d => d.color);
+                console.log("添加节点圆形元素完成。");
+
+                node.append("text")
+                    .attr("dy", ".35em")
+                    .text(d => d.name);
+                console.log("添加节点文本元素完成。");
+
+                // 添加事件监听器
+                node.on("click", nodeClicked);
+                console.log("添加节点点击事件监听器完成。");
+
+                // 节点点击事件处理函数
+                function nodeClicked(event, d) {
+                    console.log(`节点 "${d.id}" 被点击。`);
+                    selectedNodeId = d.id; // 记录选中的节点 ID
+                    const neighborNodeIds = new Set();
+                    links.forEach(link => {
+                        if (link.source.id === d.id) { // 修正为link.source.id
+                            neighborNodeIds.add(link.target.id);
+                        } else if (link.target.id === d.id) { // 修正为link.target.id
+                            neighborNodeIds.add(link.source.id);
+                        }
+                    });
+                    neighborNodeIds.add(d.id);
+                    console.log(`节点 "${d.id}" 的邻居节点 IDs:`, Array.from(neighborNodeIds));
+
+                    const filteredNodes = nodes.filter(node => neighborNodeIds.has(node.id));
+                    const filteredLinks = links.filter(link => neighborNodeIds.has(link.source.id) && neighborNodeIds.has(link.target.id));
+                    console.log("过滤后的节点:", filteredNodes);
+                    console.log("过滤后的链接:", filteredLinks);
+
+                    updateGraph(filteredNodes, filteredLinks);
+                    console.log("更新图形完成。");
+
+                    // 在右边栏显示选中节点的信息
+                    const entity = entities[d.id];
+                    if (!entity) {
+                        console.warn(`未找到节点 "${d.id}" 对应的实体信息。`);
+                    }
+                    console.log(`显示节点 "${d.id}" 的详细信息。`);
+                    d3.select("#sidebar-title").text(entity ? entity["模型/算法名称"] : "未知");
+                    d3.select("#definition").text(entity ? entity["定义"] : "无");
+                    d3.select("#applicable_scenarios").text(entity ? entity["适用场景"] : "无");
+                    d3.select("#core_idea").text(entity ? entity["核心思想"] : "无");
+
+                    d3.select("#advantages").text(entity ? entity["优势特点"] : "未知");
+                    d3.select("#limitations").text(entity ? entity["局限性"] : "无");
+                    d3.select("#application_fields").text(entity ? entity["应用领域"] : "无");
+                    d3.select("#key_components").text(entity ? entity["关键组件"] : "无");
+                    // 处理列表类型的数据
+
+
+                    // 处理相关模型/算法
+                    const relatedModels = entity ? entity["相关模型/算法"] : [];
+                    updateList("#related_models", relatedModels);
+
+                    // 处理与其他实体的关系
+                    const relatedRelations = entity ? Object.values(relations).filter(relation => 
+                        relation["出发节点"] === entity["模型/算法名称"] || 
+                        relation["到达节点"] === entity["模型/算法名称"]
+                    ) : [];
+                    const relationsList = d3.select("#relations");
+                    relationsList.html("");
+                    relatedRelations.forEach(relation => {
+                        relationsList.append("li").html(`
+                            <strong>${relation["关系类型"]}:</strong> ${relation["关系说明"]} (相关度: ${relation["相关度"]})
+                        `);
+                    });
+                    console.log("显示相关关系。");
+
+                    d3.select("#sidebar").classed("show", true);
+                    console.log("侧边栏已显示。");
+                }
+
+                // 检查节点是否有未展示的邻居
+                function hasMissingNeighbors(node, newNodes) {
+                    const neighborNodeIds = new Set();
+                    links.forEach(link => {
+                        if (link.source.id === node.id) { // 修正为link.source.id
+                            neighborNodeIds.add(link.target.id);
+                        } else if (link.target.id === node.id) { // 修正为link.target.id
+                            neighborNodeIds.add(link.source.id);
+                        }
+                    });
+                    const hasMissing = Array.from(neighborNodeIds).some(id => !newNodes.some(n => n.id === id));
+                    if (hasMissing) {
+                        console.log(`节点 "${node.id}" 有未展示的邻居节点。`);
+                    }
+                    return hasMissing;
+                }
+
+                // 更新图形函数
+                function updateGraph(newNodes, newLinks) {
+                    console.log("开始更新图形。");
+                    simulation.nodes(newNodes);
+                    simulation.force("link").links(newLinks);
+                    console.log("更新仿真的节点和链接。");
+
+                    // 更新链接
+                    link = link.data(newLinks, d => `${d.source.id}-${d.target.id}`);
+                    console.log("绑定新的链接数据。");
+                    link.exit().remove();
+                    console.log("移除退出的链接。");
+                    link = link.enter().append("line")
+                        .attr("class", "edge")
+                        .attr("stroke-width", d => Math.sqrt(d.relationship_strength))
+                        .merge(link);
+                    console.log("添加新链接完成。");
+
+                    // 更新节点
+                    node = node.data(newNodes, d => d.id);
+                    console.log("绑定新的节点数据。");
+                    node.exit().remove();
+                    console.log("移除退出的节点。");
+
+                    const nodeEnter = node.enter().append("g")
+                        .attr("class", "node")
+                        .call(d3.drag()
+                            .on("start", dragstarted)
+                            .on("drag", dragged)
+                            .on("end", dragended));
+                    console.log("添加新节点组完成。");
+
+                    nodeEnter.append("circle")
+                        .attr("r", 10)
+                        .attr("fill", d => d.color);
+                    console.log("添加新节点圆形元素完成。");
+
+                    nodeEnter.append("text")
+                        .attr("dy", ".35em")
+                        .text(d => d.name);
+                    console.log("添加新节点文本元素完成。");
+
+                    nodeEnter.on("click", nodeClicked);
+                    console.log("添加新节点点击事件监听器完成。");
+
+                    node = nodeEnter.merge(node);
+                    console.log("合并新节点和现有节点。");
+
+                    // 更新所有节点的文本
+                    node.select("text")
+                        .text(d => d.name);
+                    console.log("更新所有节点的文本。");
+
+                    // 设置选中节点和有未展示邻居节点的样式
+                    node.select("circle")
+                        .attr("r", d => {
+                            if (d.id === selectedNodeId) {
+                                return 12.5;
+                            } else if (hasMissingNeighbors(d, newNodes)) {
+                                return 10 * 1.2;
+                            } else {
+                                return 10;
+                            }
+                        })
+                        .attr("class", d => {
+                            if (d.id === selectedNodeId) {
+                                return "selected-node";
+                            } else if (hasMissingNeighbors(d, newNodes)) {
+                                return "neighbor-missing-node";
+                            } else {
+                                return "";
+                            }
+                        })
+                        .attr("fill", d => {
+                            if (d.id === selectedNodeId) {
+                                return "gold";
+                            } else if (hasMissingNeighbors(d, newNodes)) {
+                                return "green";
+                            } else {
+                                return d.color;
+                            }
+                        });
+                    console.log("更新节点样式完成。");
+
+                    simulation.alpha(1).restart();
+                    console.log("重新启动仿真。");
+                }
+
+                // 力导向仿真事件
+                simulation.on("tick", () => {
+                    link.attr("x1", d => d.source.x)
+                        .attr("y1", d => d.source.y)
+                        .attr("x2", d => d.target.x)
+                        .attr("y2", d => d.target.y);
+
+                    node.attr("transform", d => `translate(${d.x},${d.y})`);
+                    // 可以在这里添加日志来跟踪每个 tick 的位置，但可能会导致控制台过多日志
+                    // console.log("仿真tick事件触发。");
+                });
+                console.log("设置力导向仿真的tick事件。");
+
+                // 画布拖拽行为函数
+                function dragstarted(event, d) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                    console.log(`拖拽开始，节点: ${d.id}`);
+                }
+
+                function dragged(event, d) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                    console.log(`正在拖拽节点: ${d.id} 到位置 (${event.x}, ${event.y})`);
+                }
+
+                function dragended(event, d) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                    console.log(`拖拽结束，节点: ${d.id}`);
+                }
+
+                // 重置视图
+                d3.select("#reset").on("click", () => {
+                    console.log("点击重置按钮，重新加载页面。");
+                    location.reload(); // 重新加载页面
+                });
+                console.log("添加重置视图按钮事件监听器。");
+
+                // 切换右边栏显示/隐藏
+                d3.select("#toggleSidebar").on("click", () => {
+                    const sidebar = d3.select("#sidebar");
+                    const isShown = sidebar.classed("show");
+                    sidebar.classed("show", !isShown);
+                    d3.select("#toggleSidebar").text(isShown ? "显示信息" : "隐藏信息");
+                    console.log(`切换侧边栏显示状态: ${isShown ? "隐藏" : "显示"}`);
+                });
+                console.log("添加切换侧边栏显示/隐藏按钮事件监听器。");
+
+                // 初始化缩放行为
+                const zoom = d3.zoom().on("zoom", zoomed);
+                console.log("初始化缩放行为。");
+
+                // 拖拽和缩放的行为
+                function zoomed(event) {
+                    svgGroup.attr("transform", event.transform);
+                    console.log("缩放更新: ", event.transform);
+                }
+
+                // 应用缩放行为到整个 SVG
+                d3.select("svg").call(zoom);
+                console.log("应用缩放行为到 SVG。");
+
+                // 确保 SVG 大小足够大以容纳所有节点
+                function resize() {
+                    const bounds = d3.select("svg").node().getBoundingClientRect();
+                    const maxX = d3.max(nodes, d => d.x) + 20;
+                    const maxY = d3.max(nodes, d => d.y) + 20;
+                    const newWidth = Math.max(bounds.width, maxX);
+                    const newHeight = Math.max(bounds.height, maxY);
+                    d3.select("svg").attr("width", newWidth).attr("height", newHeight);
+                    console.log(`调整SVG大小为: 宽度=${newWidth}, 高度=${newHeight}`);
+                }
+
+                // 调用 resize 函数
+                resize();
+                console.log("调用 resize 函数完成。");
+            } catch (error) {
+                console.error("在主函数执行过程中发生错误:", error);
+            }
+        }
+
+
+        // 开始尝试加载 D3.js，并在加载完成后执行主函数
+        loadD3(d3Urls, main);
+    </script>
+</body>
+</html>
 
 <script src="https://giscus.app/client.js"
         data-repo="InuyashaYang/AIDIY"
