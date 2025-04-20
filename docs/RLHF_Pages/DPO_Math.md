@@ -223,9 +223,9 @@ DPO仍然与KL散度有密切关系，这体现在：
 5) DPO可以被视为在最大化奖励的同时，通过$\beta$参数软约束KL散度。这种设计使得模型既能学习偏好，又不会过分偏离参考模型的行为分布。
 
 
-<iframe src="DPO_Math.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="DPO Math Interactive Content">
+<iframe src="DPO_Math_viz.html" width="100%" height="600px" style="border: 1px solid #ccc;" title="DPO Math Interactive Content">
     您的浏览器不支持 iframe，无法加载交互式内容。
-    请 <a href="DPO_Math.html" target="_blank">点击这里在新窗口中查看</a>。
+    请 <a href="DPO_Math_viz.html" target="_blank">点击这里在新窗口中查看</a>。
 </iframe>
 
 <script src="https://giscus.app/client.js"

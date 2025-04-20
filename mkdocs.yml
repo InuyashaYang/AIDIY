@@ -57,7 +57,6 @@ nav:
     - 预训练阶段 Pre-Train: LLM_Pages/Pre-Train.md
     - 后训练阶段 Post-Train: LLM_Pages/Post-Train.md
     - MoE数学架构 Mathematics: LLM_Pages/MoE_Architecture.md
-    - Llama3架构 Architecture: LLM_Pages/Llama3.md
   - 指令微调 SFT: 
       - 监督微调 SFT: SFT_Pages/SFT.md
       - 低秩适应 Lora: SFT_Pages/Lora.md
